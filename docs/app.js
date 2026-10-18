@@ -6,7 +6,7 @@ let playbackStart = 0;
 let selectionVersion = 0;
 
 function playLabel() {
-  return `${playing ? "Pause" : "Play"} ${videos.length === 4 ? "all four" : "both"}`;
+  return `${playing ? "Pause" : "Play"} ${videos.length === 4 ? "all four" : videos.length === 1 ? "recording" : "both"}`;
 }
 
 function pause() {
@@ -75,6 +75,7 @@ function showCase(record) {
   ["play", "reset", "timeline"].forEach(id => element(id).disabled = true);
   element("players").replaceChildren();
   element("players").classList.toggle("four-up", record.tracks.length === 4);
+  element("players").classList.toggle("single", record.tracks.length === 1);
   videos = record.tracks.map(track => {
     const figure = element("track-template").content.firstElementChild.cloneNode(true);
     figure.querySelector(".track-label").textContent = track.label;
@@ -82,7 +83,7 @@ function showCase(record) {
     outcome.textContent = track.success ? "NATIVE SUCCESS" : "NO SUCCESS";
     outcome.classList.toggle("success", track.success);
     figure.querySelector(".video-detail").textContent = track.steps
-      ? `${track.steps} native steps · model wait omitted`
+      ? `${track.steps} native steps · ${Number.isInteger(track.feedback_calls) ? `${track.feedback_calls} feedback calls` : "model wait omitted"}`
       : track.privileged_state
       ? `${track.commands} commands · no runtime LLM calls · privileged state`
       : `${track.commands} commands · ${track.calls} total Astra calls (initial call shared)`;
@@ -226,7 +227,7 @@ function dishLoopScore(followup) {
 async function initialize() {
   try {
     const [gallery, study, teacher, feedback, followup] = await Promise.all(["cases", "study", "teacher", "feedback", "dish_loop"].map(async name => {
-      const response = await fetch(`data/${name}.json?v=4`);
+      const response = await fetch(`data/${name}.json?v=5`);
       if (!response.ok) throw new Error(`Cannot load ${name}`);
       return response.json();
     }));

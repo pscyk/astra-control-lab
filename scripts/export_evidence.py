@@ -1,5 +1,6 @@
 import argparse
 import ast
+import gzip
 import hashlib
 import json
 from pathlib import Path
@@ -10,6 +11,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 DESTINATION = ROOT / "docs"
 EXPECTED = {
+    "placement327-confirmation-01/status.json": "24bd1f42250b65178892becc084a813a3cdb7531eb0d029aa3de6788f39e0c6d",
+    "action-observe327-2026-10-18/status.json": "1e352b2cc3c9e2ff17bd36578c0d03eef9fcf56e35cc594b3b23a34fc999cca5",
     "placement327-confirmation-terminal-audit-01.json": "66d556e04141738a870246af1c8bdd738597d79807a4d838688649f696187609",
     "placement327-confirmation-plan-01.json": "83156d7186e75dc966bd37b17baac1c61d8b00f292f4f5eeddc5b2008544f880",
     "placement327-01/policy-final.json": "1008640f543e066247a1533dbf887799aa74d21cf85f152b1aadb3266f0ba1fe",
@@ -183,23 +186,68 @@ def main():
     write("teacher.json", {"status": "preliminary", "task": "RLBench / OpenDrawer",
         "scope": teacher_summary["scope"], "controller_sha256": controller_hash,
         "privileged_state": True, "runtime_LLM_calls": 0, "cases": teacher_cases})
-    overview = {"id": "overview", "title": "All four methods", "study": "Recordings from separate experiments",
-        "scope_notice": "Not a matched four-way comparison. These clips use different tasks and seeds. The authored controller reads privileged simulator state; the other methods do not receive those object-state inputs.",
-        "description": "The overview shows what each method executes. Use the paired views to inspect a residual repair, a regression, or the extra calls in the action–observe loop.",
-        "timing": "Model wait is omitted; playback clocks cannot compare physical speed or latency. Shared controls hold the last scene frame, skipping the drawer recorder's green status cards. Original MP4s remain unchanged.",
+    cases.append({"id": "authored", "title": "Authored controller", "seed": 9400,
+        "study": "RLBench / OpenDrawer / variation 0",
+        "description": "Astra wrote this controller before execution. It reads simulator object state and makes no runtime model calls.",
+        "timing": "The controls hold the last scene frame. The original MP4 retains its trailing status frames; playback does not measure physical execution time.",
         "tracks": [
-            cases[0]["tracks"][0] | {"label": "Zero-shot Astra", "context": "COLOSSEUM V2 · dish placement · seed 514006"},
             {"label": "Authored controller", "video": "media/drawer-authored.mp4", "poster": poster(destination),
              "success": teacher_cases[0]["native_success"], "commands": teacher_cases[0]["commands"],
              "calls": 0, "privileged_state": True, "source_sha256": digest(teacher_video),
              "playback_end_seconds": scene_end(destination),
              "context": "RLBench · OpenDrawer · seed 9400 · variation 0"},
-            cases[0]["tracks"][1] | {"label": "Astra + residual RL", "context": "COLOSSEUM V2 · dish placement · seed 514006"},
-            drawer["tracks"][1] | {"label": "Action–observe loop", "context": "RLBench · OpenDrawer · seed 42300"},
-        ]}
+        ]})
+    confirmation = json.loads((base / "placement327-confirmation-01/status.json").read_text())
+    followup_root = base / "action-observe327-2026-10-18"
+    followup = json.loads((followup_root / "status.json").read_text())
+    assert followup["phase"] == "complete"
+    seed = 514006
+    proposal = next(row for row in confirmation["jobs"] if row["seed"] == seed and row["kind"] == "proposal")
+    reference = Path(proposal["result"])
+    source(reference, proposal["sha256"])
+    reset = json.loads(reference.with_name("reset.json").read_text())
+    with reference.with_name("offline-privileged.jsonl").open() as stream:
+        initial_state = json.loads(stream.readline())["state"]
+    overview = {"id": "overview", "title": "Dish comparison", "seed": seed,
+        "study": "COLOSSEUM V2 / PlaceDishInRack-v1", "condition": "NONE",
+        "description": "Same scene, initial observations, and Astra proposal; each attempt allows 327 native steps. Only the RL residual completes this selected scene. The action–observe run makes four feedback calls.",
+        "timing": "20 Hz simulation video; model wait is omitted. Shorter clips hold their last frame. The feedback run was recorded later; the logs do not establish a fixed model checkpoint across dates.",
+        "tracks": []}
+    for mode, label in [("zero", "Zero-shot Astra"), ("action_observe", "Action–observe loop"),
+                        ("random_search", "Random-search residual"), ("astra_RL", "Astra + residual RL")]:
+        if mode == "action_observe":
+            row = next(row for row in followup["rows"] if row["seed"] == seed)
+            assert row["status"] == "completed"
+            result_path = followup_root / f"seed-{seed}/result.json"
+        else:
+            row = next(row for row in confirmation["jobs"] if row["seed"] == seed and row["mode"] == mode)
+            result_path = Path(row["result"])
+        result = source(result_path, row["sha256"])
+        assert result["complete"] and result["seed"] == seed and result["task"] == "PlaceDishInRack-v1"
+        assert result["reference_sha256"] == proposal["sha256"] and result["control_steps"] <= 327
+        artifacts = result["artifacts"] if mode == "action_observe" else result["artifact_hashes"]
+        diagnostic_name = "offline-privileged.jsonl.gz" if mode == "action_observe" else "offline-privileged.jsonl"
+        for name in ("execution.mp4", "reset.json", "external1_camera.png", "external2_camera.png", "hand_camera.png", diagnostic_name):
+            assert digest(result_path.with_name(name)) == artifacts[name]
+        assert json.loads(result_path.with_name("reset.json").read_text()) == reset
+        for name in ("external1_camera.png", "external2_camera.png", "hand_camera.png"):
+            assert result_path.with_name(name).read_bytes() == reference.with_name(name).read_bytes()
+        opener = gzip.open if mode == "action_observe" else open
+        with opener(result_path.with_name(diagnostic_name), "rt") as stream:
+            assert json.loads(stream.readline())["state"] == initial_state
+        original = result_path.with_name("execution.mp4")
+        destination = media / f"{seed}-{mode}.mp4"
+        shutil.copyfile(original, destination)
+        sources.append({"source": original.relative_to(archive).as_posix(), "sha256": digest(original)})
+        overview["tracks"].append({"label": label, "mode": mode, "seed": seed, "task": result["task"],
+            "video": f"media/{destination.name}", "poster": poster(destination), "success": result["native_success"],
+            "steps": result["control_steps"], "feedback_calls": result["new_LLM_calls"],
+            "source_sha256": digest(original), "result_sha256": row["sha256"],
+            "reference_sha256": proposal["sha256"], "initial_state_verified": True, "privileged_state": False,
+            "context": f"PlaceDishInRack-v1 · seed {seed}"})
     cases.insert(0, overview)
     write("cases.json", {"cases": cases,
-        "selection": "Post-hoc illustrations, not a representative sample. Dish cases use the first seed with each displayed pattern in the prior 103-scene four-method overlap. The loop uses the first fresh drawer scene. The authored controller uses the first archived seed and variation (9400, 0); the overview mixes studies and is not protocol-matched."})
+        "selection": "Post-hoc illustrations, not a representative sample. The overview retains the previously displayed dish scene 514006 and adds its random-search and action-observe recordings without choosing a new seed. Dish pairs use the first seed for each displayed pattern in the prior 103-scene overlap. The drawer pair uses the first fresh drawer scene. The separate authored-controller view uses the first archived seed and variation (9400, 0)."})
     contracts = {}
     for label, path in [("v2", base / "astra_controller.py"), ("v1_feedback", feedback_root / "controller.py")]:
         sources.append({"source": path.relative_to(archive).as_posix(), "sha256": digest(path)})

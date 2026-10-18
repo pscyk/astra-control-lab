@@ -2,6 +2,14 @@
   "export_version": 1,
   "sources": [
     {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/status.json",
+      "sha256": "24bd1f42250b65178892becc084a813a3cdb7531eb0d029aa3de6788f39e0c6d"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/action-observe327-2026-10-18/status.json",
+      "sha256": "1e352b2cc3c9e2ff17bd36578c0d03eef9fcf56e35cc594b3b23a34fc999cca5"
+    },
+    {
       "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-terminal-audit-01.json",
       "sha256": "66d556e04141738a870246af1c8bdd738597d79807a4d838688649f696187609"
     },
@@ -172,6 +180,42 @@
     {
       "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9400-variant-0/rollout.mp4",
       "sha256": "877015f6777b0a15591b5ca4d132ef706c4e5bcef0c57ffe99675d7d99cae385"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/020--seed514006--proposal/result.json",
+      "sha256": "5699a57afeda8f28670b51596f647cf4a11901cb3981ca02a511b0ef024cb75d"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/021--seed514006--zero/result.json",
+      "sha256": "901d2bc8303ffb32d4c484e2da09edee89a4a06db9af9e53609cc3c716497634"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/021--seed514006--zero/execution.mp4",
+      "sha256": "234c4ec17a39b5d9b418c008166ee1dca4023ea3b9e40b452f6385c49d015641"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/action-observe327-2026-10-18/seed-514006/result.json",
+      "sha256": "2c120169608ced06f5715ef85e2bcc2a82a0d5453ae11b8ca2e51c2e6515cf2f"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/action-observe327-2026-10-18/seed-514006/execution.mp4",
+      "sha256": "280b3000b3541a704a733edc35a46f58957c9e116e11c2d5f2c59d79020a36df"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/023--seed514006--random_search/result.json",
+      "sha256": "90169bd07ff1ee82219272eba1c0931426f0713ae7268ceff971a0d1c1da3593"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/023--seed514006--random_search/execution.mp4",
+      "sha256": "173d806b1f5bc08d6f711dbf3fe96c3f233301e137a999759fbd35666a0defb0"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/022--seed514006--astra_RL/result.json",
+      "sha256": "f9533f742a0d9ff84898b890c0a78c08aae5e6b1bae6776af9504ae75efc2dc1"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/022--seed514006--astra_RL/execution.mp4",
+      "sha256": "c9de6a1cb926070913f07afc91a9eadd69f2477ca240ae51eb99906ce412e253"
     },
     {
       "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/astra_controller.py",

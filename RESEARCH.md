@@ -49,7 +49,7 @@ The initial observation fields and first issued action match for the fresh drawe
 
 Astra wrote the Python controller before execution. The code reads task joints, handle anchors, native waypoints, and success conditions, so this is a privileged demonstration teacher rather than an observation-only policy. It makes no runtime model calls and rejects use outside `development_training`.
 
-The four-panel demo combines a recording from this study with dish-placement and feedback recordings. Its panels use different tasks, seeds, and inputs. They illustrate the methods; their simultaneous playback is not a matched comparison or a latency measurement.
+The authored controller has its own recording view. The four-panel overview now shows dish seed `514006` with zero-shot, action–observe, random-search residual, and RL residual control. All four start from the same simulator state, camera images, and initial proposal. The loop uses four extra calls and was recorded later; backend checkpoint identity across dates remains unverified. Playback omits model wait.
 
 ## 5. Reproduction status
 

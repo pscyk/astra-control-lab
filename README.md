@@ -4,13 +4,13 @@ Robot manipulation experiments with Astra-generated action trajectories in COLOS
 
 You can inspect recorded rollouts, recompute the results, and replay the residual-policy updates with Python's standard library. Running new robot episodes requires the original simulator setup and model access; neither is included here.
 
-[Four-method view](https://pscyk.github.io/astra-control-lab/?view=overview#replay) · [Action–observe demo](https://pscyk.github.io/astra-control-lab/?view=drawer#replay) · [Research findings](RESEARCH.md)
+[Same-scene dish comparison](https://pscyk.github.io/astra-control-lab/?view=overview#replay) · [Authored controller](https://pscyk.github.io/astra-control-lab/?view=authored#replay) · [Drawer feedback pair](https://pscyk.github.io/astra-control-lab/?view=drawer#replay) · [Research findings](RESEARCH.md)
 
 [![Recorded dish-placement scene: Astra without correction and Astra with a learned residual](docs/media/teaser.gif)](https://pscyk.github.io/astra-control-lab/)
 
 The clip shows seed `514006`, where the residual succeeds and the base trajectory fails. It omits model wait and holds the shorter recording's final frame. The demo also includes a regression, a missed grasp, and a drawer recovery using new observations. These are selected examples, not a random sample.
 
-The page opens with all four methods side by side on desktop. Those recordings use different tasks and seeds; they are not a matched four-way comparison. The paired views retain the within-study comparisons, and the results section keeps each study separate.
+The page opens with four dish runs from seed `514006`: zero-shot, action–observe, random-search residual, and RL residual. The exporter verifies their shared initial simulator state, camera images, robot state, calibration, and Astra proposal. The feedback run makes four extra calls and was recorded later. This is the previously displayed scene, not a new selection based on the feedback result. The authored drawer controller has a separate recording view.
 
 ## Run locally
 

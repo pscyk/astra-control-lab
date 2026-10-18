@@ -7,11 +7,12 @@ Date: 19 October 2026.
 | Check | Result |
 |---|---|
 | Standard-library unit tests | 31 pass |
-| Exported JSON and source-video hashes | 18 files pass |
+| Exported JSON and source-video hashes | 20 files pass |
 | Four recorded policy updates | Match within `1e-12` |
 | Original NumPy/SciPy residual versus port | 495 comparisons; maximum target error `2.22e-16` |
-| Browser playback | Five views × two viewports pass; four panels share one row on desktop |
-| View links | Selection, direct action–observe link, reload, and invalid-view fallback pass |
+| Browser playback | Six views × two viewports pass; four same-scene dish panels share one row on desktop |
+| View links | Selection, drawer and authored-controller links, reload, and invalid-view fallback pass |
+| Dish overview bindings | All four recordings use seed 514006, identical initial state and camera images, and the same initial proposal |
 | Dish chart coverage | Action–observe row shows run status until its full audit completes; incomplete runs have no percentage bar |
 | Drawer end frames | Shared controls hold the last scene frame, not the green status card |
 | Authored-controller export | All 15 outcomes agree with returned native rewards; source controller hash matches |
@@ -43,11 +44,11 @@ python3 -m compileall -q astra_lab reference scripts
 The optional browser test needs Playwright and a compatible Chromium installation. It is not part of the dependency-free Python package.
 
 ```bash
-python3 -m http.server 8000 --bind 127.0.0.1 --directory docs
+caddy file-server --root docs --listen 127.0.0.1:8000
 python3 tests/browser_smoke.py --url http://127.0.0.1:8000
 ```
 
-Use `--chromium PATH` to select an existing browser. The test checks play, pause, seek, reset, case selection, study counts, direct links, and mobile width. It also checks the four-panel desktop layout and samples the held drawer frames to reject a green status card. It saves screenshots and a JSON report under the system temporary directory by default. The release check used Chromium 1228 and Playwright 1.64.0 on Linux.
+Use a server with HTTP byte-range support, such as Caddy, for video seek checks. Python's basic HTTP server does not provide this. Use `--chromium PATH` to select an existing browser. The test checks play, pause, seek, reset, case selection, study counts, direct links, and mobile width. It checks that the overview contains four dish clips from the same seed, tests the standalone authored-controller view, and samples held drawer frames to reject a green status card. It saves screenshots and a JSON report under the system temporary directory by default. The release check used Chromium 1228 and Playwright 1.64.0 on Linux.
 
 ## Export and media
 
@@ -58,7 +59,7 @@ python3 scripts/export_evidence.py PATH_TO_ORIGINAL_RESEARCH_ARCHIVE
 bash scripts/make_teaser.sh
 ```
 
-Both commands need FFmpeg. The exporter checks fixed hashes for the primary records, copies nine original MP4 recordings without re-encoding, and extracts the first frame for each poster. It verifies the ten trailing green status frames in the successful drawer clips before assigning a scene-end time for shared playback. Native video controls still show the complete source recording. The GIF uses eight frames per second and holds the shorter clip's last frame; it remains a selected dish pair, not a four-way trial or a new rollout.
+Both commands need FFmpeg. The exporter checks fixed hashes for the primary records, copies eleven original MP4 recordings without re-encoding, and extracts the first frame for each poster. The dish overview keeps seed 514006 and adds its existing random-search and action–observe recordings. It verifies the ten trailing green status frames in the successful drawer clips before assigning a scene-end time for shared playback. Native video controls still show the complete source recording. The GIF uses eight frames per second and holds the shorter clip's last frame; it remains a selected dish pair, not a four-way trial or a new rollout.
 
 The manifest covers JSON evidence and original MP4 recordings. Display-only posters, the GIF, and the browser screenshot are derived previews, not primary evidence.
 

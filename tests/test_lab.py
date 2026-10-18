@@ -39,22 +39,38 @@ class EvidenceTests(unittest.TestCase):
                 evidence.wilson(successes, trials)
 
     def test_manifest(self):
-        self.assertEqual(evidence.verify(), 18)
+        self.assertEqual(evidence.verify(), 20)
 
     def test_four_method_overview(self):
         gallery = json.loads((evidence.DATA / "cases.json").read_text())
-        self.assertEqual(len(gallery["cases"]), 5)
+        self.assertEqual(len(gallery["cases"]), 6)
         overview = gallery["cases"][0]
         self.assertEqual(overview["id"], "overview")
         self.assertEqual(len(overview["tracks"]), 4)
-        self.assertIn("Not a matched four-way comparison", overview["scope_notice"])
-        self.assertNotIn("seed", overview)
-        self.assertTrue(overview["tracks"][1]["privileged_state"])
-        self.assertAlmostEqual(overview["tracks"][1]["playback_end_seconds"], 113 / 30)
-        self.assertAlmostEqual(overview["tracks"][3]["playback_end_seconds"], 180 / 30)
+        self.assertNotIn("scope_notice", overview)
+        self.assertEqual(overview["seed"], 514006)
+        self.assertEqual({track["seed"] for track in overview["tracks"]}, {514006})
+        self.assertEqual({track["task"] for track in overview["tracks"]}, {"PlaceDishInRack-v1"})
+        self.assertEqual(len({track["reference_sha256"] for track in overview["tracks"]}), 1)
+        self.assertTrue(all(track["initial_state_verified"] and not track["privileged_state"] for track in overview["tracks"]))
+        self.assertEqual([track["mode"] for track in overview["tracks"]], ["zero", "action_observe", "random_search", "astra_RL"])
+        self.assertEqual([track["feedback_calls"] for track in overview["tracks"]], [0, 4, 0, 0])
+        loop = json.loads((evidence.DATA / "dish_loop.json").read_text())
+        loop_row = next(row for row in loop["outcomes"] if row["seed"] == 514006)
+        self.assertEqual(overview["tracks"][1]["result_sha256"], loop_row["sha256"])
+        for track in overview["tracks"]:
+            row = loop_row if track["mode"] == "action_observe" else next(
+                row for row in evidence.load()["outcomes"] if row["seed"] == 514006 and row["mode"] == track["mode"])
+            self.assertEqual(track["success"], row["native_success"])
+            self.assertEqual(track["result_sha256"], row.get("source_sha256", row.get("sha256")))
         self.assertEqual(overview["tracks"][0]["video"], gallery["cases"][1]["tracks"][0]["video"])
-        self.assertEqual(overview["tracks"][2]["video"], gallery["cases"][1]["tracks"][1]["video"])
-        self.assertEqual(overview["tracks"][3]["video"], gallery["cases"][-1]["tracks"][1]["video"])
+        self.assertEqual(overview["tracks"][3]["video"], gallery["cases"][1]["tracks"][1]["video"])
+        authored = gallery["cases"][-1]
+        self.assertEqual(authored["id"], "authored")
+        self.assertEqual(len(authored["tracks"]), 1)
+        self.assertTrue(authored["tracks"][0]["privileged_state"])
+        self.assertAlmostEqual(authored["tracks"][0]["playback_end_seconds"], 113 / 30)
+        self.assertAlmostEqual(gallery["cases"][4]["tracks"][1]["playback_end_seconds"], 180 / 30)
         for case in gallery["cases"]:
             for track in case["tracks"]:
                 video = evidence.ROOT / "docs" / track["video"]

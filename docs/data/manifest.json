@@ -3,7 +3,7 @@
   "files": [
     {
       "path": "data/cases.json",
-      "sha256": "c323d597bfd89ee6e7f6dfc0c783c30012fd2a7ace7580fb4c927ed3f3cf1461"
+      "sha256": "ab4be4e3c08e681efa7b0f88f7ef8d6a184a51261fe39d0cae774346c91833b7"
     },
     {
       "path": "data/contracts.json",
@@ -19,7 +19,7 @@
     },
     {
       "path": "data/provenance.json",
-      "sha256": "20cb113909f36acce789e337a161398515b970cde58419ae572e9f36d00b3342"
+      "sha256": "7d13e04da032ed129c2cc3ce24564aa23d3dd1f0aa2343175e83705270defb3d"
     },
     {
       "path": "data/study.json",
@@ -38,8 +38,16 @@
       "sha256": "07f38d1849e2ea82f29873f73fd134dbb0f3c1a22bde9c73d2f724e23d99d232"
     },
     {
+      "path": "media/514006-action_observe.mp4",
+      "sha256": "280b3000b3541a704a733edc35a46f58957c9e116e11c2d5f2c59d79020a36df"
+    },
+    {
       "path": "media/514006-astra_RL.mp4",
       "sha256": "c9de6a1cb926070913f07afc91a9eadd69f2477ca240ae51eb99906ce412e253"
+    },
+    {
+      "path": "media/514006-random_search.mp4",
+      "sha256": "173d806b1f5bc08d6f711dbf3fe96c3f233301e137a999759fbd35666a0defb0"
     },
     {
       "path": "media/514006-zero.mp4",

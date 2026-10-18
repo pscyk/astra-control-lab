@@ -21,7 +21,7 @@ def check_dish_score_states(browser, url, checks):
             page.wait_for_function("document.querySelector('#load-status').textContent.includes('Follow-up is incomplete')")
             assert "%" not in page.locator("#dish-loop-score").inner_text()
         else:
-            page.wait_for_function("document.querySelectorAll('.case-buttons button').length === 5")
+            page.wait_for_function("document.querySelectorAll('.case-buttons button').length === 6")
             assert page.locator("#dish-loop-score").inner_text() == ("Run stopped" if incomplete else "10.5%")
             assert page.locator("#dish-loop-result .score-fill").count() == (0 if incomplete else 1)
             assert "1 interrupted attempt retained" in page.locator("#dish-loop-status").inner_text()
@@ -47,14 +47,14 @@ def main():
             page = browser.new_page(viewport={"width": width, "height": height}, reduced_motion="reduce")
             page.on("pageerror", lambda error: errors.append(str(error)))
             page.goto(args.url)
-            page.wait_for_function("document.querySelectorAll('.case-buttons button').length === 5")
+            page.wait_for_function("document.querySelectorAll('.case-buttons button').length === 6")
             assert page.locator(".hero-art .stamp").count() == 0
             assert "NOT A ROLLOUT" not in page.locator(".hero-art").text_content()
             assert "NOT SIMULATOR OUTPUT" not in page.locator(".hero-art").text_content()
             assert page.locator("#rescues").inner_text() == "53"
             assert page.locator("#regressions").inner_text() == "4"
             assert page.locator("#scores .score").count() == 4
-            followup = page.request.get(f"{args.url.rstrip('/')}/data/dish_loop.json?v=3").json()
+            followup = page.request.get(f"{args.url.rstrip('/')}/data/dish_loop.json?v=5").json()
             complete = followup["phase"] == "complete"
             assert page.locator("#scores .score-fill").count() == (4 if complete else 3)
             assert page.locator("#scores .score").nth(1).get_attribute("id") == "dish-loop-result"
@@ -73,14 +73,17 @@ def main():
             assert page.locator("#loop-base-score").inner_text() == "1/3"
             assert page.locator("#known-loop-score").inner_text() == "0/3"
             assert page.locator("video").count() == 4
-            for index in range(5):
+            assert "Not a matched four-way comparison" not in page.locator("#replay").inner_text()
+            assert all("PlaceDishInRack-v1" in context and "514006" in context for context in page.locator(".track-context").all_text_contents())
+            assert all("drawer" not in source for source in page.locator("video").evaluate_all("videos => videos.map(video => video.src)"))
+            for index in range(6):
                 page.locator(".case-buttons button").nth(index).click()
                 page.wait_for_function("!document.querySelector('#play').disabled")
                 case_id = page.locator(".case-buttons button").nth(index).get_attribute("data-case")
                 assert f"view={case_id}" in page.url
                 assert page.locator("#case-link").get_attribute("href").endswith(f"view={case_id}#replay")
-                assert page.locator("video").count() == (4 if index == 0 else 2)
-                assert page.locator("#comparison-scope").is_visible() == (index in [0, 4])
+                assert page.locator("video").count() == (4 if index == 0 else 1 if index == 5 else 2)
+                assert page.locator("#comparison-scope").is_visible() == (index == 4)
                 assert "undefined" not in page.locator("#case-meta").inner_text()
                 assert "[object Object]" not in page.locator(".players").inner_text()
                 assert len(page.locator(".video-detail").first.inner_text()) < 120
@@ -90,7 +93,7 @@ def main():
                     assert all(left["x"] < right["x"] for left, right in zip(boxes, boxes[1:]))
                 page.locator("#play").click()
                 page.wait_for_timeout(800)
-                assert page.locator("#play").inner_text() == ("Pause all four" if index == 0 else "Pause both")
+                assert page.locator("#play").inner_text() == ("Pause all four" if index == 0 else "Pause recording" if index == 5 else "Pause both")
                 assert all(value > 0 for value in page.locator("video").evaluate_all("videos => videos.map(video => video.currentTime)"))
                 page.locator("#play").click()
                 assert all(page.locator("video").evaluate_all("videos => videos.map(video => video.paused)"))
@@ -104,10 +107,20 @@ def main():
             assert not page.locator("#load-status").inner_text()
             page.locator(".case-buttons button").first.click()
             page.wait_for_function("!document.querySelector('#play').disabled")
-            page.locator("#timeline").evaluate("slider => { slider.value = 8; slider.dispatchEvent(new Event('input')); }")
+            page.locator("#timeline").evaluate("slider => { slider.value = 15; slider.dispatchEvent(new Event('input')); }")
             page.wait_for_function("Array.from(document.querySelectorAll('video')).every(video => !video.seeking)")
-            assert page.locator("video").nth(1).evaluate("video => Math.abs(video.currentTime - Number(video.dataset.playbackEnd)) < 0.01")
-            for index in [1, 3]:
+            assert page.locator("video").nth(3).evaluate("video => Math.abs(video.currentTime - video.duration) < 0.01")
+            page.locator("#play").click()
+            page.wait_for_timeout(300)
+            assert page.locator("video").nth(3).evaluate("video => video.paused")
+            assert page.locator("video").first.evaluate("video => video.currentTime > 15")
+            page.locator("#play").click()
+            for case_id, index in [("drawer", 1), ("authored", 0)]:
+                page.locator(f".case-buttons button[data-case='{case_id}']").click()
+                page.wait_for_function("!document.querySelector('#play').disabled")
+                page.locator("#timeline").evaluate("slider => { slider.value = slider.max; slider.dispatchEvent(new Event('input')); }")
+                page.wait_for_function("Array.from(document.querySelectorAll('video')).every(video => !video.seeking)")
+                assert page.locator("video").nth(index).evaluate("video => Math.abs(video.currentTime - Number(video.dataset.playbackEnd)) < 0.01")
                 assert page.locator("video").nth(index).evaluate("""video => {
                     const canvas = document.createElement('canvas');
                     canvas.width = canvas.height = 1;
@@ -116,17 +129,16 @@ def main():
                     const pixel = context.getImageData(0, 0, 1, 1).data;
                     return !(pixel[0] < 10 && pixel[1] > 245 && pixel[2] < 10);
                 }""")
-            page.locator("#play").click()
-            page.wait_for_timeout(300)
-            assert page.locator("video").nth(1).evaluate("video => video.paused")
-            assert page.locator("video").first.evaluate("video => video.currentTime > 8")
-            page.locator("#play").click()
+            page.locator(".case-buttons button").first.click()
+            page.wait_for_function("!document.querySelector('#play').disabled")
+            page.locator("#timeline").evaluate("slider => { slider.value = 5; slider.dispatchEvent(new Event('input')); }")
+            page.wait_for_function("Array.from(document.querySelectorAll('video')).every(video => !video.seeking)")
             page.locator("video").evaluate_all("videos => videos.forEach(video => video.controls = false)")
             page.wait_for_timeout(500)
             page.screenshot(path=str(args.output / f"page-{width}.png"), full_page=True)
             if width == 1440:
                 page.locator("#replay").screenshot(path=str(args.output / "preview.png"))
-            for view, expected in [("drawer", "drawer"), ("invalid", "overview")]:
+            for view, expected in [("drawer", "drawer"), ("authored", "authored"), ("invalid", "overview")]:
                 page.goto(f"{args.url.rstrip('/')}/?view={view}#replay")
                 page.wait_for_function("!document.querySelector('#play').disabled")
                 assert page.locator(".case-buttons button[aria-pressed=true]").get_attribute("data-case") == expected

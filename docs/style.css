@@ -67,6 +67,7 @@ nav a:hover { color: var(--accent); }
 .scope-note { border-left: 2px solid var(--line-strong); background: var(--surface); padding: 10px 14px; font-size: 12px; color: var(--muted); }
 .players { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .players.four-up { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.players.single { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
 .players figure { margin: 0; min-width: 0; background: var(--surface); border: 1px solid var(--line); }
 .players figcaption { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 12px; }
 .four-up figcaption { flex-direction: column; align-items: flex-start; gap: 5px; }
@@ -163,7 +164,8 @@ footer a { text-decoration: none; }
   .case-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .case-buttons button { padding: 12px; border-right: 0; border-bottom: 1px solid var(--line-strong); font-size: 12px; }
   .case-buttons button:nth-child(odd) { border-right: 1px solid var(--line-strong); }
-  .case-buttons button:last-child { grid-column: 1 / -1; border: 0; }
+  .case-buttons button:nth-last-child(-n+2) { border-bottom: 0; }
+  .case-buttons button:last-child:nth-child(odd) { grid-column: 1 / -1; border: 0; }
   .case-heading { display: block; }
   .case-heading > p { max-width: none; text-align: left; }
   .players, .players.four-up, .evidence-grid, .study-grid, .reproduce { grid-template-columns: 1fr; }

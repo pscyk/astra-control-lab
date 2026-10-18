@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#06070a">
   <title>Astra Control Lab | Robot control experiments</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=4">
-  <script src="app.js?v=4" defer></script>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="app.js?v=5" defer></script>
 </head>
 <body>
 <a class="skip" href="#replay">Skip to replay</a>
@@ -22,7 +22,7 @@
       <p class="eyebrow">~/astra-control-lab · simulation studies</p>
       <h1>Robot control with Astra</h1>
       <p class="lede">Astra predicts robot actions from instructions and observations. These experiments test learned corrections and feedback during execution.</p>
-      <div class="hero-links"><a class="button dark" href="?view=overview#replay">View four methods <span aria-hidden="true">↓</span></a><a href="?view=drawer#replay">Drawer feedback pair ↗</a></div>
+      <div class="hero-links"><a class="button dark" href="?view=overview#replay">Compare dish runs <span aria-hidden="true">↓</span></a><a href="?view=authored#replay">Authored controller ↗</a></div>
     </div>
     <div class="hero-art" aria-hidden="true">
       <svg viewBox="0 0 440 390" fill="none">
@@ -47,11 +47,11 @@
     <div id="case-buttons" class="case-buttons" role="group" aria-label="Select a recorded case"></div>
     <p id="load-status" role="status">Loading recordings and results.</p>
     <noscript>Enable JavaScript for playback. The repository also contains the JSON results and MP4 recordings.</noscript>
-    <div class="case-heading"><h3 id="case-title">All four methods</h3><p id="case-meta"></p></div>
+    <div class="case-heading"><h3 id="case-title">Dish comparison</h3><p id="case-meta"></p></div>
     <p id="comparison-scope" class="scope-note" role="note" hidden></p>
     <div class="players" id="players"></div>
     <template id="track-template"><figure><figcaption><span class="track-label"></span><span class="outcome"></span></figcaption><video muted playsinline preload="metadata" controls></video><p class="video-detail"></p><p class="track-context"></p></figure></template>
-    <div class="transport"><button id="play" class="button dark" disabled>Play all four</button><button id="reset" class="button" disabled>Reset</button><label for="timeline" class="sr-only">Seek the displayed recordings</label><input id="timeline" type="range" min="0" max="1" value="0" step="0.05" disabled><output id="clock" for="timeline">0.0 s</output></div>
+    <div class="transport"><button id="play" class="button dark" disabled>Play all four</button><button id="reset" class="button" disabled>Reset</button><label for="timeline" class="sr-only">Seek the displayed recordings</label><input id="timeline" type="range" min="0" max="1" value="0" step="0.001" disabled><output id="clock" for="timeline">0.0 s</output></div>
     <a id="case-link" class="case-share" href="?view=overview#replay">Link to this view ↗</a>
     <div class="case-notes"><p id="case-description"></p><p id="timing" class="muted"></p></div>
     <p class="fine">The clips show cases selected after evaluation, not a representative sample. They retain the original video captions.</p>
@@ -86,7 +86,7 @@
       <article><span class="method-number">01</span><h3>Zero-shot trajectory</h3><p>Astra returns actions from an instruction and observations. Inputs include calibration and robot state. Prompt development precedes evaluation; the prompt contains no task demonstrations, and model weights stay fixed.</p><div class="flow">observe → Astra → execute</div><span class="method-tag">Runtime model call</span></article>
       <article><span class="method-number">02</span><h3>Authored controller</h3><p>Astra writes Python before execution. The drawer controller reads private simulator state, so it serves as a privileged training teacher. An observation-only policy cannot use those inputs.</p><div class="flow">Astra → code → execute</div><span class="method-tag">Private simulator state</span></article>
       <article><span class="method-number">03</span><h3>Learned residual</h3><p>Four policy-gradient updates fit three bounded corrections using simulator reward. Evaluation keeps the corrections and Astra weights fixed. This method uses no student imitation.</p><div class="flow">Astra → + Δ → execute</div><span class="method-tag">4 updates / 3 parameters</span></article>
-      <article><span class="method-number">04</span><h3>Action–observe loop</h3><p>Astra receives new observations after short action phases and revises the remaining plan. Extra calls supply feedback while model weights stay fixed.</p><div class="flow">Astra → act → observe ↺</div><a class="method-tag" href="?view=drawer#replay">Drawer recording ↗</a></article>
+      <article><span class="method-number">04</span><h3>Action–observe loop</h3><p>Astra receives new observations after short action phases and revises the remaining plan. Extra calls supply feedback while model weights stay fixed.</p><div class="flow">Astra → act → observe ↺</div><a class="method-tag" href="?view=overview#replay">Dish comparison ↗</a></article>
     </div>
   </section>
   <section class="lab-note wrap"><div><p class="eyebrow">~/failures</p><h2>Grasp and placement failures</h2><p>The residual repairs 53 base failures but causes four regressions. Random search accounts for much of the gain: RL wins 16 pairs and loses four against that control. The remaining grasp failures need a different correction because the residual only changes later poses.</p><p>The feedback run opens one drawer that the one-shot run does not, at a cost of eight extra calls. Its first returned observation differs at the bit level from the baseline's, so this development case cannot isolate the benefit of feedback.</p><p class="fine">The studies do not test a combined feedback-plus-residual policy. Simulator success does not establish safe contact. These records cover neither the full task suite nor real robots.</p></div></section>

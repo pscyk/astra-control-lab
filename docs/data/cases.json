@@ -2,54 +2,80 @@
   "cases": [
     {
       "id": "overview",
-      "title": "All four methods",
-      "study": "Recordings from separate experiments",
-      "scope_notice": "Not a matched four-way comparison. These clips use different tasks and seeds. The authored controller reads privileged simulator state; the other methods do not receive those object-state inputs.",
-      "description": "The overview shows what each method executes. Use the paired views to inspect a residual repair, a regression, or the extra calls in the action\u2013observe loop.",
-      "timing": "Model wait is omitted; playback clocks cannot compare physical speed or latency. Shared controls hold the last scene frame, skipping the drawer recorder's green status cards. Original MP4s remain unchanged.",
+      "title": "Dish comparison",
+      "seed": 514006,
+      "study": "COLOSSEUM V2 / PlaceDishInRack-v1",
+      "condition": "NONE",
+      "description": "Same scene, initial observations, and Astra proposal; each attempt allows 327 native steps. Only the RL residual completes this selected scene. The action\u2013observe run makes four feedback calls.",
+      "timing": "20 Hz simulation video; model wait is omitted. Shorter clips hold their last frame. The feedback run was recorded later; the logs do not establish a fixed model checkpoint across dates.",
       "tracks": [
         {
           "label": "Zero-shot Astra",
+          "mode": "zero",
+          "seed": 514006,
+          "task": "PlaceDishInRack-v1",
           "video": "media/514006-zero.mp4",
+          "poster": "media/514006-zero.png",
           "success": false,
           "steps": 327,
-          "poster": "media/514006-zero.png",
-          "duration": 16.4,
+          "feedback_calls": 0,
           "source_sha256": "234c4ec17a39b5d9b418c008166ee1dca4023ea3b9e40b452f6385c49d015641",
-          "context": "COLOSSEUM V2 \u00b7 dish placement \u00b7 seed 514006"
-        },
-        {
-          "label": "Authored controller",
-          "video": "media/drawer-authored.mp4",
-          "poster": "media/drawer-authored.png",
-          "success": true,
-          "commands": 8,
-          "calls": 0,
-          "privileged_state": true,
-          "source_sha256": "877015f6777b0a15591b5ca4d132ef706c4e5bcef0c57ffe99675d7d99cae385",
-          "playback_end_seconds": 3.7666666666666666,
-          "context": "RLBench \u00b7 OpenDrawer \u00b7 seed 9400 \u00b7 variation 0"
-        },
-        {
-          "label": "Astra + residual RL",
-          "video": "media/514006-astra_RL.mp4",
-          "success": true,
-          "steps": 279,
-          "poster": "media/514006-astra_RL.png",
-          "duration": 14.0,
-          "source_sha256": "c9de6a1cb926070913f07afc91a9eadd69f2477ca240ae51eb99906ce412e253",
-          "context": "COLOSSEUM V2 \u00b7 dish placement \u00b7 seed 514006"
+          "result_sha256": "901d2bc8303ffb32d4c484e2da09edee89a4a06db9af9e53609cc3c716497634",
+          "reference_sha256": "5699a57afeda8f28670b51596f647cf4a11901cb3981ca02a511b0ef024cb75d",
+          "initial_state_verified": true,
+          "privileged_state": false,
+          "context": "PlaceDishInRack-v1 \u00b7 seed 514006"
         },
         {
           "label": "Action\u2013observe loop",
-          "video": "media/drawer-feedback.mp4",
+          "mode": "action_observe",
+          "seed": 514006,
+          "task": "PlaceDishInRack-v1",
+          "video": "media/514006-action_observe.mp4",
+          "poster": "media/514006-action_observe.png",
+          "success": false,
+          "steps": 327,
+          "feedback_calls": 4,
+          "source_sha256": "280b3000b3541a704a733edc35a46f58957c9e116e11c2d5f2c59d79020a36df",
+          "result_sha256": "2c120169608ced06f5715ef85e2bcc2a82a0d5453ae11b8ca2e51c2e6515cf2f",
+          "reference_sha256": "5699a57afeda8f28670b51596f647cf4a11901cb3981ca02a511b0ef024cb75d",
+          "initial_state_verified": true,
+          "privileged_state": false,
+          "context": "PlaceDishInRack-v1 \u00b7 seed 514006"
+        },
+        {
+          "label": "Random-search residual",
+          "mode": "random_search",
+          "seed": 514006,
+          "task": "PlaceDishInRack-v1",
+          "video": "media/514006-random_search.mp4",
+          "poster": "media/514006-random_search.png",
+          "success": false,
+          "steps": 327,
+          "feedback_calls": 0,
+          "source_sha256": "173d806b1f5bc08d6f711dbf3fe96c3f233301e137a999759fbd35666a0defb0",
+          "result_sha256": "90169bd07ff1ee82219272eba1c0931426f0713ae7268ceff971a0d1c1da3593",
+          "reference_sha256": "5699a57afeda8f28670b51596f647cf4a11901cb3981ca02a511b0ef024cb75d",
+          "initial_state_verified": true,
+          "privileged_state": false,
+          "context": "PlaceDishInRack-v1 \u00b7 seed 514006"
+        },
+        {
+          "label": "Astra + residual RL",
+          "mode": "astra_RL",
+          "seed": 514006,
+          "task": "PlaceDishInRack-v1",
+          "video": "media/514006-astra_RL.mp4",
+          "poster": "media/514006-astra_RL.png",
           "success": true,
-          "commands": 13,
-          "calls": 9,
-          "source_sha256": "3ec3df5a6fe599f60726b10d33e518b34f8c05a06f362f950211cb880eec11b2",
-          "poster": "media/drawer-feedback.png",
-          "playback_end_seconds": 6.0,
-          "context": "RLBench \u00b7 OpenDrawer \u00b7 seed 42300"
+          "steps": 279,
+          "feedback_calls": 0,
+          "source_sha256": "c9de6a1cb926070913f07afc91a9eadd69f2477ca240ae51eb99906ce412e253",
+          "result_sha256": "f9533f742a0d9ff84898b890c0a78c08aae5e6b1bae6776af9504ae75efc2dc1",
+          "reference_sha256": "5699a57afeda8f28670b51596f647cf4a11901cb3981ca02a511b0ef024cb75d",
+          "initial_state_verified": true,
+          "privileged_state": false,
+          "context": "PlaceDishInRack-v1 \u00b7 seed 514006"
         }
       ]
     },
@@ -166,7 +192,29 @@
           "playback_end_seconds": 6.0
         }
       ]
+    },
+    {
+      "id": "authored",
+      "title": "Authored controller",
+      "seed": 9400,
+      "study": "RLBench / OpenDrawer / variation 0",
+      "description": "Astra wrote this controller before execution. It reads simulator object state and makes no runtime model calls.",
+      "timing": "The controls hold the last scene frame. The original MP4 retains its trailing status frames; playback does not measure physical execution time.",
+      "tracks": [
+        {
+          "label": "Authored controller",
+          "video": "media/drawer-authored.mp4",
+          "poster": "media/drawer-authored.png",
+          "success": true,
+          "commands": 8,
+          "calls": 0,
+          "privileged_state": true,
+          "source_sha256": "877015f6777b0a15591b5ca4d132ef706c4e5bcef0c57ffe99675d7d99cae385",
+          "playback_end_seconds": 3.7666666666666666,
+          "context": "RLBench \u00b7 OpenDrawer \u00b7 seed 9400 \u00b7 variation 0"
+        }
+      ]
     }
   ],
-  "selection": "Post-hoc illustrations, not a representative sample. Dish cases use the first seed with each displayed pattern in the prior 103-scene four-method overlap. The loop uses the first fresh drawer scene. The authored controller uses the first archived seed and variation (9400, 0); the overview mixes studies and is not protocol-matched."
+  "selection": "Post-hoc illustrations, not a representative sample. The overview retains the previously displayed dish scene 514006 and adds its random-search and action-observe recordings without choosing a new seed. Dish pairs use the first seed for each displayed pattern in the prior 103-scene overlap. The drawer pair uses the first fresh drawer scene. The separate authored-controller view uses the first archived seed and variation (9400, 0)."
 }
