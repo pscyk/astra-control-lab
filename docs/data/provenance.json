@@ -1,0 +1,119 @@
+{
+  "export_version": 1,
+  "sources": [
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-terminal-audit-01.json",
+      "sha256": "66d556e04141738a870246af1c8bdd738597d79807a4d838688649f696187609"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-plan-01.json",
+      "sha256": "83156d7186e75dc966bd37b17baac1c61d8b00f292f4f5eeddc5b2008544f880"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-01/policy-final.json",
+      "sha256": "1008640f543e066247a1533dbf887799aa74d21cf85f152b1aadb3266f0ba1fe"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-case-breakdown-01.json",
+      "sha256": "d171e8246a0a4f5d5218e39b92168648b2c31cb037893b4404b09902db0ccf9c"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-01/update-00.json",
+      "sha256": "57ee96392e6ccaace78638a853e20dc44e5eb9adaa4715272b1448d9b4f79dc1"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-01/update-01.json",
+      "sha256": "192a63612fbab70c47dc4069177b36f45073f90868b52eb8ec9eea968677bde4"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-01/update-02.json",
+      "sha256": "5ee8690a73d14df7fd5f190d08eadaebd41f66536566ee58340e8decd874cd7b"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-01/update-03.json",
+      "sha256": "9825fda67c21b7c816ddef6c24c6fa77e3470a3b6d843e83fe256a8918563f8b"
+    },
+    {
+      "source": "work/benchmark-audit/astra-feedback-01-2026-10-09/verification.json",
+      "sha256": "fd18b5bd12a8272c9df7318eedf3176b90e35755127c23b60362523cfa17fad7"
+    },
+    {
+      "source": "reports/astra-research-failures-2026-10-12/demo/preview_manifest.json",
+      "sha256": "44463c09f0460c489e2b7e7d456913932f6b22569d838e6e486b9977ff07afa0"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/021--seed514006--zero/result.json",
+      "sha256": "901d2bc8303ffb32d4c484e2da09edee89a4a06db9af9e53609cc3c716497634"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/021--seed514006--zero/execution.mp4",
+      "sha256": "234c4ec17a39b5d9b418c008166ee1dca4023ea3b9e40b452f6385c49d015641"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/022--seed514006--astra_RL/result.json",
+      "sha256": "f9533f742a0d9ff84898b890c0a78c08aae5e6b1bae6776af9504ae75efc2dc1"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/022--seed514006--astra_RL/execution.mp4",
+      "sha256": "c9de6a1cb926070913f07afc91a9eadd69f2477ca240ae51eb99906ce412e253"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/084--seed514024--zero/result.json",
+      "sha256": "977c7f7a3d6f4984703e8623227a3efec329fcbd8bb2bf5fba56ef010e51fd82"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/084--seed514024--zero/execution.mp4",
+      "sha256": "17728f7c376262fa147be8007345e3b530b9b6ca8f3ae3335337c5ee3e711cbb"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/085--seed514024--astra_RL/result.json",
+      "sha256": "7388c0b5b9bf3e5b181bf6674c5326367875e7868bd1aa4c3ce5232e45ff3b63"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/085--seed514024--astra_RL/execution.mp4",
+      "sha256": "9f8ad3745b11c3a7767203b9977387d1ec3254d164c68ff741eb1f849c7a674a"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/064--seed514019--zero/result.json",
+      "sha256": "7b37e491730f313c0a1ef46f67403229bc9de283274ab443361e8a5750121413"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/064--seed514019--zero/execution.mp4",
+      "sha256": "96b6af5f01fe0de934683580f58b1ea924e5af2818c5046d4deff87ea959542c"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/065--seed514019--astra_RL/result.json",
+      "sha256": "f270116ab236ae5e9158b5bf889b0da35b5a8087bf8fb8f27440d64c8cb4a7b2"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/placement327-confirmation-01/episodes/065--seed514019--astra_RL/execution.mp4",
+      "sha256": "42c9d55cd59f919d98d6a85c04b80a358432c0eb8a8da0e696de00015526beed"
+    },
+    {
+      "source": "work/benchmark-audit/astra-feedback-01-2026-10-09/rollouts/fresh-open_drawer-oneshot/result.json",
+      "sha256": "c4d2e48b79acebd4ac1474ff4fd776a015069716d37306905815ea3ac352cf0c"
+    },
+    {
+      "source": "work/benchmark-audit/astra-feedback-01-2026-10-09/rollouts/fresh-open_drawer-oneshot/rollout.mp4",
+      "sha256": "e40473fcce599e2a3419f9b61221c1423a7a34a44fd167b1f67bc51a3d9f2e92"
+    },
+    {
+      "source": "work/benchmark-audit/astra-feedback-01-2026-10-09/rollouts/fresh-open_drawer-feedback/result.json",
+      "sha256": "f81a5102c1a1b2766e666c1d75eb657569cebe48ec9543d64925203199f59290"
+    },
+    {
+      "source": "work/benchmark-audit/astra-feedback-01-2026-10-09/rollouts/fresh-open_drawer-feedback/rollout.mp4",
+      "sha256": "3ec3df5a6fe599f60726b10d33e518b34f8c05a06f362f950211cb880eec11b2"
+    },
+    {
+      "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/astra_controller.py",
+      "sha256": "54e63890225914ff8168f4cf1cfa0b23297701b982a36a259a72788dd7819342"
+    },
+    {
+      "source": "work/benchmark-audit/astra-feedback-01-2026-10-09/controller.py",
+      "sha256": "04253f15ec4544b0c4644c42dfe342e72406d7165a39e6d441d284b973624351"
+    }
+  ],
+  "method": "Allowlisted JSON fields and byte-identical source MP4 files. No model reasoning, credentials or absolute source paths.",
+  "limits": "Original private archive is not bundled. Hashes identify sources; they do not independently validate simulation outcomes."
+}

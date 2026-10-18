@@ -1,0 +1,21 @@
+Astra Control Lab is an independent research portfolio project by C Y K Sagar.
+The project is not an official release of the model or simulator providers.
+
+The original code in this repository is offered under the MIT license.
+Simulation recordings show experiments conducted with COLOSSEUM V2, ManiSkill,
+and RLBench. The videos are research outputs, not redistributed simulator meshes
+or model weights. No ownership of third-party visual assets is claimed. Their
+upstream terms remain applicable. The code license does not relicense those assets.
+
+COLOSSEUM V2: https://github.com/jstmn/ColosseumV2
+Inspected local base commit: a67b6735e7bbba8cf7476bc92c256d052678f813
+This is a base commit, not a claim that the research working tree was unmodified.
+ManiSkill: https://github.com/haosulab/ManiSkill
+RLBench: https://github.com/stepjam/RLBench
+
+The archived controller in reference/authored_drawer.py was generated during
+the author's Astra research. It uses privileged simulator state. It is not a
+public benchmark policy. It requires the original RLBench/PyRep environment.
+
+The requested model alias in historical receipts is gpt-6-astra. No immutable
+checkpoint identity or public availability is asserted by this release.

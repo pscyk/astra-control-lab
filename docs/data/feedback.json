@@ -1,0 +1,123 @@
+{
+  "complete": true,
+  "scope": "Controller-engineering study: three previously diagnosed failures plus three predefined fresh nominal scenes. Not an official benchmark, generalization-rate estimate or superiority claim.",
+  "summary": {
+    "known_failure_diagnostic/feedback": {
+      "successes": 0,
+      "episodes": 3
+    },
+    "fresh_development/oneshot": {
+      "successes": 1,
+      "episodes": 3
+    },
+    "fresh_development/feedback": {
+      "successes": 2,
+      "episodes": 3
+    }
+  },
+  "rows": [
+    {
+      "name": "known-open_drawer-feedback",
+      "cohort": "known_failure_diagnostic",
+      "task": "open_drawer",
+      "mode": "feedback",
+      "success": false,
+      "commands": 21,
+      "calls": 13,
+      "first_action_observation_exact": false
+    },
+    {
+      "name": "known-insert_onto_square_peg-feedback",
+      "cohort": "known_failure_diagnostic",
+      "task": "insert_onto_square_peg",
+      "mode": "feedback",
+      "success": false,
+      "commands": 17,
+      "calls": 13,
+      "first_action_observation_exact": true
+    },
+    {
+      "name": "known-stack_cups-feedback",
+      "cohort": "known_failure_diagnostic",
+      "task": "stack_cups",
+      "mode": "feedback",
+      "success": false,
+      "commands": 16,
+      "calls": 13,
+      "first_action_observation_exact": true
+    },
+    {
+      "name": "fresh-open_drawer-oneshot",
+      "cohort": "fresh_development",
+      "task": "open_drawer",
+      "mode": "oneshot",
+      "success": false,
+      "commands": 8,
+      "calls": 1,
+      "first_action_observation_exact": null
+    },
+    {
+      "name": "fresh-open_drawer-feedback",
+      "cohort": "fresh_development",
+      "task": "open_drawer",
+      "mode": "feedback",
+      "success": true,
+      "commands": 13,
+      "calls": 9,
+      "first_action_observation_exact": false
+    },
+    {
+      "name": "fresh-insert_onto_square_peg-oneshot",
+      "cohort": "fresh_development",
+      "task": "insert_onto_square_peg",
+      "mode": "oneshot",
+      "success": true,
+      "commands": 7,
+      "calls": 1,
+      "first_action_observation_exact": null
+    },
+    {
+      "name": "fresh-insert_onto_square_peg-feedback",
+      "cohort": "fresh_development",
+      "task": "insert_onto_square_peg",
+      "mode": "feedback",
+      "success": true,
+      "commands": 17,
+      "calls": 13,
+      "first_action_observation_exact": true
+    },
+    {
+      "name": "fresh-stack_cups-oneshot",
+      "cohort": "fresh_development",
+      "task": "stack_cups",
+      "mode": "oneshot",
+      "success": false,
+      "commands": 16,
+      "calls": 1,
+      "first_action_observation_exact": null
+    },
+    {
+      "name": "fresh-stack_cups-feedback",
+      "cohort": "fresh_development",
+      "task": "stack_cups",
+      "mode": "feedback",
+      "success": false,
+      "commands": 17,
+      "calls": 13,
+      "first_action_observation_exact": true
+    }
+  ],
+  "native_actions": 132,
+  "new_LLM_calls": 71,
+  "reused_initial_calls": 6,
+  "new_call_input_tokens": 1722158,
+  "new_call_output_tokens": 30790,
+  "parameter_updates": 0,
+  "status": "preliminary",
+  "median_call_wait_seconds": 18.6,
+  "confounds": [
+    "Different prompt and depth feedback as well as extra calls.",
+    "First returned drawer observation was not bitwise identical.",
+    "Only three fresh scenes. No generalization claim."
+  ]
+}

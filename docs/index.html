@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Astra Control Lab. Real robot simulation recordings, tiny residual policies, and failures left in the record.">
+  <meta name="theme-color" content="#16362d">
+  <title>Astra Control Lab — Good plan. Wrong grasp.</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#replay">Skip to replay</a>
+<header class="masthead wrap">
+  <a class="brand" href="#" aria-label="Astra Control Lab home"><span class="brand-mark">a*</span> ASTRA <span>/ CONTROL LAB</span></a>
+  <nav aria-label="Main"><a href="#methods">Methods</a><a href="#evidence">Evidence</a><a href="https://github.com/pscyk/astra-control-lab">Source ↗</a></nav>
+</header>
+<main>
+  <section class="hero wrap">
+    <div>
+      <p class="eyebrow"><span class="dot"></span> ROBOT CONTROL / FIELD NOTES 001</p>
+      <h1>Good plan.<br><em>Wrong grasp.</em></h1>
+      <p class="lede">An LLM can propose a trajectory.<br>The robot still has to pick up the dish.</p>
+      <p class="hero-note">Explore Astra, small learned corrections, and an action–observe loop. Real simulation recordings. Failures included.</p>
+      <a class="button dark" href="#replay">Inspect the experiment <span>↓</span></a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 440 390" fill="none">
+        <path d="M20 330H420M50 30V350M390 30V350M20 80H420" stroke="currentColor" opacity=".14"/>
+        <circle cx="245" cy="215" r="121" stroke="currentColor" stroke-dasharray="3 8" opacity=".4"/>
+        <ellipse cx="244" cy="316" rx="123" ry="26" fill="#16362d" opacity=".08"/>
+        <ellipse cx="245" cy="272" rx="85" ry="19" fill="#f8f5ec" stroke="currentColor" stroke-width="3"/>
+        <path d="M160 272C168 317 322 317 330 272" fill="#f8f5ec" stroke="currentColor" stroke-width="3"/>
+        <ellipse cx="245" cy="272" rx="64" ry="11" stroke="currentColor" opacity=".4"/>
+        <path d="M183 0V106L155 151V194L179 218L197 199L181 182V158L210 119V0" fill="#d9ed8d" stroke="currentColor" stroke-width="3"/>
+        <path d="M243 0V106L271 151V194L247 218L229 199L245 182V158L216 119V0" fill="#d9ed8d" stroke="currentColor" stroke-width="3"/>
+        <rect x="170" y="45" width="87" height="54" rx="7" fill="#16362d"/>
+        <circle cx="213" cy="72" r="13" stroke="#f4f1e7" stroke-width="3"/>
+        <path d="M214 227V255M204 245L214 255L224 245" stroke="#b4482f" stroke-width="2" stroke-dasharray="4 3"/>
+        <path d="M315 169H373V198" stroke="currentColor"/>
+        <text x="295" y="153" fill="currentColor" font-size="10" font-family="monospace">CONTACT IS NOT OPTIONAL.</text>
+        <text x="63" y="365" fill="currentColor" font-size="11" font-family="monospace">ILLUSTRATION / NOT A ROLLOUT</text>
+      </svg>
+      <span class="stamp">SMALL POLICY.<br>VISIBLE EVIDENCE.</span>
+    </div>
+  </section>
+  <div class="ticker"><div class="wrap">NO GPU FOR THIS DEMO <span>↗</span> NO API KEY <span>↗</span> NO HIDDEN FAILURES <span>↗</span> NO SOTA CLAIM</div></div>
+  <section id="replay" class="replay-section wrap">
+    <div class="section-heading"><div><p class="eyebrow">01 / OPEN THE FLIGHT RECORDER</p><h2>Watch the difference.</h2></div><span class="tag">RECORDED SIMULATION</span></div>
+    <div id="case-buttons" class="case-buttons" role="group" aria-label="Select a recorded case"></div>
+    <p id="load-status" role="status">Loading the evidence…</p>
+    <noscript>Enable JavaScript for paired playback. You can also inspect the JSON files and MP4 recordings in the repository.</noscript>
+    <div class="case-heading"><h3 id="case-title">The repair</h3><p id="case-meta"></p></div>
+    <div class="players">
+      <figure><figcaption><span id="label-left">Astra</span><span id="result-left" class="outcome"></span></figcaption><video id="left" muted playsinline preload="metadata" controls aria-label="Baseline recorded rollout"></video><p id="detail-left" class="video-detail"></p></figure>
+      <figure><figcaption><span id="label-right">Astra + residual</span><span id="result-right" class="outcome"></span></figcaption><video id="right" muted playsinline preload="metadata" controls aria-label="Comparison recorded rollout"></video><p id="detail-right" class="video-detail"></p></figure>
+    </div>
+    <div class="transport"><button id="play" class="button dark" disabled>Play both</button><button id="reset" class="button" disabled>Reset</button><label for="timeline" class="sr-only">Seek both recordings</label><input id="timeline" type="range" min="0" max="1" value="0" step="0.05" disabled><output id="clock" for="timeline">0.0 s</output></div>
+    <div class="case-notes"><p id="case-description"></p><p id="timing" class="muted"></p></div>
+    <p class="fine">Cases were selected after the experiment to show distinct outcomes. They do not estimate a success rate. Original video captions remain unchanged. No frames were generated.</p>
+  </section>
+  <section id="evidence" class="evidence-section">
+    <div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / KEEP THE DENOMINATOR</p><h2>A small correction.<br>A measurable difference.</h2></div><span class="tag light">PRELIMINARY / ONE TASK</span></div>
+      <div class="evidence-grid"><div><p class="evidence-intro">200 planned scenes. One shared Astra proposal per scene. The same native step budget for all three methods.</p><div id="scores"></div><p class="fine">Task completion within the model and execution budgets. Intervals are 95% Wilson intervals across scenes, not across training runs.</p></div>
+      <aside class="receipt"><p class="eyebrow">THE PAIRED RECEIPT</p><div class="receipt-number"><strong id="rescues">—</strong><span>base failures repaired</span></div><div class="receipt-number negative"><strong id="regressions">—</strong><span>base successes lost</span></div><hr><p><strong>34 shared model deadlines.</strong><br>They count as noncompletion. Their physical outcomes remain unknown.</p><p>495 native rollouts. One rejected proposal. One training seed. No full-suite claim.</p><a href="data/study.json">Inspect all 600 assignments ↗</a></aside></div>
+    </div>
+  </section>
+  <section id="methods" class="methods wrap">
+    <p class="eyebrow">03 / FOUR METHODS. NOT FOUR NAMES FOR THE SAME THING.</p><h2>Where does Astra act?</h2>
+    <div class="method-grid">
+      <article><span class="method-number">01</span><h3>Zero-shot trajectory</h3><p>Astra reads observations and an instruction. It returns actions. No task demonstrations enter the prompt. No learner updates its weights.</p><div class="flow">OBSERVE → ASTRA → EXECUTE</div><span class="method-tag">RUNTIME LLM CALL</span></article>
+      <article><span class="method-number">02</span><h3>Authored controller</h3><p>Astra writes Python before the run. The drawer reference uses private simulator state. It is a training teacher, not a zero-shot vision policy.</p><div class="flow">ASTRA → CODE → EXECUTE</div><span class="method-tag">PRIVILEGED REFERENCE</span></article>
+      <article><span class="method-number">03</span><h3>Learned residual</h3><p>Keep Astra fixed. Train three bounded corrections with simulator reward. Freeze them before evaluation. This is residual RL, not student imitation.</p><div class="flow">ASTRA → + Δ → EXECUTE</div><span class="method-tag">4 UPDATES / 3 PARAMETERS</span></article>
+      <article><span class="method-number">04</span><h3>Action–observe loop</h3><p>Execute a short phase. Observe again. Ask Astra to revise the plan. The fresh study moved from 1/3 to 2/3 successes. No weights changed.</p><div class="flow">ASTRA → ACT → OBSERVE ↺</div><span class="method-tag">MORE CALLS / NOT RL</span></article>
+    </div>
+  </section>
+  <section class="lab-note wrap"><span class="note-index">!</span><div><p class="eyebrow">WHAT WE LEARNED</p><h2>A placement fix is not a grasp fix.</h2><p>The residual repaired 53 failures and caused four regressions. It cannot recover an object that was never grasped. A new observation can help, but extra calls add latency. The next test should decide when to apply a correction—not apply it everywhere.</p><p class="fine">The loop study is separate from the 200-scene dish study. It also changed the prompt and depth feedback. The first returned drawer observation was not bitwise identical. These are not compute-matched causal results.</p></div></section>
+  <section class="reproduce wrap"><div><p class="eyebrow">04 / BRING YOUR OWN SKEPTICISM</p><h2>Recompute. Don’t trust the chart.</h2><p>Python 3.10+. Standard library only. No model download.</p></div><pre><code>python3 -m astra_lab verify
+python3 -m astra_lab report
+python3 -m astra_lab replay-training
+python3 -m unittest discover -s tests -v</code></pre><p class="fine">This package replays recorded updates and checks exported results. It does not rerun the original simulator or model. The original harness, weights, and asset downloads are not included.</p></section>
+</main>
+<footer class="wrap"><span>ASTRA CONTROL LAB <span class="muted">/ C Y K SAGAR</span></span><a href="https://github.com/pscyk/astra-control-lab">Code, evidence, and limits ↗</a><span class="muted">BUILD SMALL. SHOW THE FAILURES.</span></footer>
+</body>
+</html>

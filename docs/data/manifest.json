@@ -1,0 +1,65 @@
+{
+  "algorithm": "sha256",
+  "files": [
+    {
+      "path": "data/cases.json",
+      "sha256": "c3b3c782caa0056e496c1481f31f5f8384b3497223b50e751031d02f49696474"
+    },
+    {
+      "path": "data/contracts.json",
+      "sha256": "39f344efde2536d2e128e02463b3805f9bc5bd1212944204ff988115b460f3e6"
+    },
+    {
+      "path": "data/feedback.json",
+      "sha256": "c40ab3531781f2e66f1ab3aaf3f79cea13c9996e4a594c60eabcdc4aea50df74"
+    },
+    {
+      "path": "data/provenance.json",
+      "sha256": "ae77a654a4eaab32bdf769356787a015e91db78a115053051bad0f181908757e"
+    },
+    {
+      "path": "data/study.json",
+      "sha256": "280fdbeacfa6eff9534a20b664dfde0a9caf9f3eb967e14f4ac5a4b142a4aec7"
+    },
+    {
+      "path": "data/training.json",
+      "sha256": "105eb9e30da195d6f3740a8919b373c0e07e9e005825c9bda543e6795262542b"
+    },
+    {
+      "path": "data/trajectory.json",
+      "sha256": "07f38d1849e2ea82f29873f73fd134dbb0f3c1a22bde9c73d2f724e23d99d232"
+    },
+    {
+      "path": "media/514006-astra_RL.mp4",
+      "sha256": "c9de6a1cb926070913f07afc91a9eadd69f2477ca240ae51eb99906ce412e253"
+    },
+    {
+      "path": "media/514006-zero.mp4",
+      "sha256": "234c4ec17a39b5d9b418c008166ee1dca4023ea3b9e40b452f6385c49d015641"
+    },
+    {
+      "path": "media/514019-astra_RL.mp4",
+      "sha256": "42c9d55cd59f919d98d6a85c04b80a358432c0eb8a8da0e696de00015526beed"
+    },
+    {
+      "path": "media/514019-zero.mp4",
+      "sha256": "96b6af5f01fe0de934683580f58b1ea924e5af2818c5046d4deff87ea959542c"
+    },
+    {
+      "path": "media/514024-astra_RL.mp4",
+      "sha256": "9f8ad3745b11c3a7767203b9977387d1ec3254d164c68ff741eb1f849c7a674a"
+    },
+    {
+      "path": "media/514024-zero.mp4",
+      "sha256": "17728f7c376262fa147be8007345e3b530b9b6ca8f3ae3335337c5ee3e711cbb"
+    },
+    {
+      "path": "media/drawer-feedback.mp4",
+      "sha256": "3ec3df5a6fe599f60726b10d33e518b34f8c05a06f362f950211cb880eec11b2"
+    },
+    {
+      "path": "media/drawer-oneshot.mp4",
+      "sha256": "e40473fcce599e2a3419f9b61221c1423a7a34a44fd167b1f67bc51a3d9f2e92"
+    }
+  ]
+}

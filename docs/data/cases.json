@@ -1,0 +1,117 @@
+{
+  "cases": [
+    {
+      "id": "514006",
+      "title": "The repair",
+      "description": "The frozen residual changes the carry and release. Native success changes from false to true.",
+      "seed": 514006,
+      "study": "COLOSSEUM V2 / PlaceDishInRack-v1",
+      "tracks": [
+        {
+          "label": "Astra \u00b7 zero-shot",
+          "video": "media/514006-zero.mp4",
+          "success": false,
+          "steps": 327,
+          "poster": "media/514006-zero.png",
+          "duration": 16.4,
+          "source_sha256": "234c4ec17a39b5d9b418c008166ee1dca4023ea3b9e40b452f6385c49d015641"
+        },
+        {
+          "label": "Astra + residual",
+          "video": "media/514006-astra_RL.mp4",
+          "success": true,
+          "steps": 279,
+          "poster": "media/514006-astra_RL.png",
+          "duration": 14.0,
+          "source_sha256": "c9de6a1cb926070913f07afc91a9eadd69f2477ca240ae51eb99906ce412e253"
+        }
+      ],
+      "timing": "20 Hz simulation video. Model wait is omitted. The shorter clip holds its last frame."
+    },
+    {
+      "id": "514024",
+      "title": "The regression",
+      "description": "The base trajectory succeeds. The same residual moves the dish outside the target region.",
+      "seed": 514024,
+      "study": "COLOSSEUM V2 / PlaceDishInRack-v1",
+      "tracks": [
+        {
+          "label": "Astra \u00b7 zero-shot",
+          "video": "media/514024-zero.mp4",
+          "success": true,
+          "steps": 274,
+          "poster": "media/514024-zero.png",
+          "duration": 13.75,
+          "source_sha256": "17728f7c376262fa147be8007345e3b530b9b6ca8f3ae3335337c5ee3e711cbb"
+        },
+        {
+          "label": "Astra + residual",
+          "video": "media/514024-astra_RL.mp4",
+          "success": false,
+          "steps": 327,
+          "poster": "media/514024-astra_RL.png",
+          "duration": 16.4,
+          "source_sha256": "9f8ad3745b11c3a7767203b9977387d1ec3254d164c68ff741eb1f849c7a674a"
+        }
+      ],
+      "timing": "20 Hz simulation video. Model wait is omitted. The shorter clip holds its last frame."
+    },
+    {
+      "id": "514019",
+      "title": "The missed grasp",
+      "description": "Neither method acquires the dish. A later placement correction cannot fix an empty grasp.",
+      "seed": 514019,
+      "study": "COLOSSEUM V2 / PlaceDishInRack-v1",
+      "tracks": [
+        {
+          "label": "Astra \u00b7 zero-shot",
+          "video": "media/514019-zero.mp4",
+          "success": false,
+          "steps": 327,
+          "poster": "media/514019-zero.png",
+          "duration": 16.4,
+          "source_sha256": "96b6af5f01fe0de934683580f58b1ea924e5af2818c5046d4deff87ea959542c"
+        },
+        {
+          "label": "Astra + residual",
+          "video": "media/514019-astra_RL.mp4",
+          "success": false,
+          "steps": 327,
+          "poster": "media/514019-astra_RL.png",
+          "duration": 16.4,
+          "source_sha256": "42c9d55cd59f919d98d6a85c04b80a358432c0eb8a8da0e696de00015526beed"
+        }
+      ],
+      "timing": "20 Hz simulation video. Model wait is omitted. The shorter clip holds its last frame."
+    },
+    {
+      "id": "drawer",
+      "title": "Observe. Try again.",
+      "seed": 42300,
+      "study": "RLBench / OpenDrawer / fresh development scene",
+      "description": "The feedback run opens the drawer. It uses eight more Astra calls after the shared first proposal. This is not RL.",
+      "timing": "Recorded frames only. Model wait is omitted. Playback is not wall-clock or physical-time evidence.",
+      "tracks": [
+        {
+          "label": "Astra \u00b7 one-shot",
+          "video": "media/drawer-oneshot.mp4",
+          "success": false,
+          "commands": 8,
+          "calls": 1,
+          "source_sha256": "e40473fcce599e2a3419f9b61221c1423a7a34a44fd167b1f67bc51a3d9f2e92",
+          "poster": "media/drawer-oneshot.png"
+        },
+        {
+          "label": "Astra \u00b7 action\u2013observe",
+          "video": "media/drawer-feedback.mp4",
+          "success": true,
+          "commands": 13,
+          "calls": 9,
+          "source_sha256": "3ec3df5a6fe599f60726b10d33e518b34f8c05a06f362f950211cb880eec11b2",
+          "poster": "media/drawer-feedback.png"
+        }
+      ]
+    }
+  ],
+  "selection": "Post-hoc illustrations, not a representative sample. Dish cases use the first seed with each displayed pattern in the prior 103-scene four-method overlap. Drawer uses the first fresh drawer scene."
+}
