@@ -5,6 +5,31 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 
+def check_dish_score_states(browser, url, checks):
+    for phase, incomplete in [("stopped", True), ("complete", False), ("complete", True)]:
+        page = browser.new_page()
+        outcomes = [{"seed": seed, "status": "completed", "native_success": seed < 514022}
+                    for seed in range(514001, 514201)]
+        if incomplete:
+            outcomes[-1].update(status="pending", native_success=None)
+        fixture = {"schema_version": 1, "task": "PlaceDishInRack-v1", "phase": phase,
+                   "updated_unix": 1792347527, "outcomes": outcomes}
+        page.route("**/data/dish_loop.json*", lambda route: route.fulfill(json=fixture))
+        page.goto(url)
+        if phase == "complete" and incomplete:
+            page.wait_for_function("document.querySelector('#load-status').textContent.includes('Follow-up is incomplete')")
+            assert "%" not in page.locator("#dish-loop-score").inner_text()
+        else:
+            page.wait_for_function("document.querySelectorAll('.case-buttons button').length === 5")
+            assert page.locator("#dish-loop-score").inner_text() == ("Run stopped" if incomplete else "10.5%")
+            assert page.locator("#dish-loop-result .score-fill").count() == (0 if incomplete else 1)
+            if not incomplete:
+                assert "21/200 planned scenes" in page.locator("#dish-loop-status").inner_text()
+                assert "95% CI 7.0–15.5%" in page.locator("#dish-loop-status").inner_text()
+        checks.append({"synthetic_dish_phase": phase, "incomplete": incomplete, "result": "pass"})
+        page.close()
+
+
 def main():
     parser = argparse.ArgumentParser(description="Optional browser test. Requires Playwright and Chromium.")
     parser.add_argument("--url", default="http://127.0.0.1:8000")
@@ -21,9 +46,26 @@ def main():
             page.on("pageerror", lambda error: errors.append(str(error)))
             page.goto(args.url)
             page.wait_for_function("document.querySelectorAll('.case-buttons button').length === 5")
+            assert page.locator(".hero-art .stamp").count() == 0
+            assert "NOT A ROLLOUT" not in page.locator(".hero-art").text_content()
+            assert "NOT SIMULATOR OUTPUT" not in page.locator(".hero-art").text_content()
             assert page.locator("#rescues").inner_text() == "53"
             assert page.locator("#regressions").inner_text() == "4"
-            assert page.locator(".score").count() == 3
+            assert page.locator("#scores .score").count() == 4
+            followup = page.request.get(f"{args.url.rstrip('/')}/data/dish_loop.json?v=3").json()
+            complete = followup["phase"] == "complete"
+            assert page.locator("#scores .score-fill").count() == (4 if complete else 3)
+            assert page.locator("#scores .score").nth(1).get_attribute("id") == "dish-loop-result"
+            assert page.locator("#dish-loop-result .score-top span").inner_text() == "Astra · action–observe loop"
+            assert "Not evaluated" not in page.locator("#dish-loop-result").inner_text()
+            assert page.locator("#dish-loop-result .score-fill").count() == (1 if complete else 0)
+            if not complete:
+                assert "%" not in page.locator("#dish-loop-score").inner_text()
+            assert page.locator("#loop-summary").inner_text() == "2/3"
+            page.locator("#dish-loop-result a[href='#loop-study']").click()
+            assert page.url.endswith("#loop-study")
+            assert page.locator("#loop-study").is_visible()
+            page.locator("#evidence").screenshot(path=str(args.output / f"results-{width}.png"))
             assert page.locator("#teacher-score").inner_text() == "15/15"
             assert page.locator("#loop-score").inner_text() == "2/3"
             assert page.locator("#loop-base-score").inner_text() == "1/3"
@@ -91,6 +133,7 @@ def main():
                 assert page.locator(".case-buttons button[aria-pressed=true]").get_attribute("data-case") == expected
             checks.append({"width": width, "deep_links_reload_invalid_view": "pass", "shorter_clip_hold": "pass"})
             page.close()
+        check_dish_score_states(browser, args.url, checks)
         browser.close()
     assert not errors, errors
     result = {"checks": checks, "browser_errors": errors, "new_model_calls": 0, "new_simulator_rollouts": 0}

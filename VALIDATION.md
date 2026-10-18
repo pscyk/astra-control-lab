@@ -6,17 +6,21 @@ Date: 18 October 2026.
 
 | Check | Result |
 |---|---|
-| Standard-library unit tests | 16 pass |
-| Exported JSON and source-video hashes | 17 files pass |
+| Standard-library unit tests | 25 pass |
+| Exported JSON and source-video hashes | 18 files pass |
 | Four recorded policy updates | Match within `1e-12` |
 | Original NumPy/SciPy residual versus port | 495 comparisons; maximum target error `2.22e-16` |
 | Browser playback | Five views × two viewports pass; four panels share one row on desktop |
 | View links | Selection, direct action–observe link, reload, and invalid-view fallback pass |
+| Dish chart coverage | Action–observe row shows run status until its full audit completes; incomplete runs have no percentage bar |
 | Drawer end frames | Shared controls hold the last scene frame, not the green status card |
 | Authored-controller export | All 15 outcomes agree with returned native rewards; source controller hash matches |
 | Browser runtime errors | None in the smoke test |
 | Mobile horizontal overflow | None at 390 px |
-| New model calls or simulator rollouts | Zero |
+| Follow-up display states | Synthetic completed, stopped, and falsely completed records pass; no partial score is displayed |
+| Report styling | Uses cyks.in's color values, grid, and local font stacks; no downloaded fonts |
+| Dish follow-up baseline smoke | All 327 native steps match the archived development baseline exactly |
+| New model calls or simulator rollouts | The new action–observe follow-up executes both; see `DISH_LOOP.md` |
 
 The transform check uses 165 original saved proposals. Each proposal is checked at zero, the frozen RL mean, and `[-2, 2, -2]`. This is numerical parity, not new simulation evidence.
 
@@ -57,4 +61,4 @@ The manifest covers JSON evidence and original MP4 recordings. Display-only post
 
 ## Not checked
 
-No new simulator reproduction, real-robot run, Safari/Firefox test, formal accessibility audit, or certified ASD-STE100 vocabulary check was performed. Research limits are listed in `RESEARCH.md`.
+No real-robot run, Safari/Firefox test, formal accessibility audit, or certified ASD-STE100 vocabulary check was performed. Research limits are listed in `RESEARCH.md`.

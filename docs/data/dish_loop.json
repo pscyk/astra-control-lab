@@ -1,0 +1,1622 @@
+{
+  "schema_version": 1,
+  "status": "preliminary",
+  "phase": "running",
+  "task": "PlaceDishInRack-v1",
+  "updated_unix": 1792347888.4978874,
+  "started_unix": 1792347527.27801,
+  "protocol_sha256": "40e7e153c08b1573ed06dbefa0b97cd8902bfd8b8bd7e6f50cbc98f0926b0508",
+  "review_interval_steps": 64,
+  "maximum_feedback_calls": 4,
+  "total_model_wait_budget_seconds": 720,
+  "summary": {
+    "planned": 200,
+    "accounted": 41,
+    "native_completed": 6,
+    "successes": 0,
+    "budgeted_rate": null
+  },
+  "outcomes": [
+    {
+      "seed": 514001,
+      "status": "completed",
+      "native_success": false,
+      "sha256": "e830144f9aca0bf97759fdae26aec27b9967624f4547ad04a7f28e2441fd087d",
+      "new_LLM_calls": 4,
+      "control_steps": 327
+    },
+    {
+      "seed": 514002,
+      "status": "completed",
+      "native_success": false,
+      "sha256": "221e8d8932bde35a2d10ea8fe74a54001ffd4ac7d300aaa8548a98c00f880c26",
+      "new_LLM_calls": 4,
+      "control_steps": 327
+    },
+    {
+      "seed": 514003,
+      "status": "completed",
+      "native_success": false,
+      "sha256": "1d07db35e3eed9c92ee5f28eb560c8461b3b042f8b5e13188750d50e5dd58295",
+      "new_LLM_calls": 4,
+      "control_steps": 327
+    },
+    {
+      "seed": 514004,
+      "status": "completed",
+      "native_success": false,
+      "sha256": "99abbb630d9d7a8be891504532d5e0151939734decf4fa9570857ceb7acae385",
+      "new_LLM_calls": 4,
+      "control_steps": 327
+    },
+    {
+      "seed": 514005,
+      "status": "completed",
+      "native_success": false,
+      "sha256": "fe12e26379c827aad874506a2a1bdbd6317cea82a692a679c6d6ca8619dbb95d",
+      "new_LLM_calls": 4,
+      "control_steps": 327
+    },
+    {
+      "seed": 514006,
+      "status": "completed",
+      "native_success": false,
+      "sha256": "2c120169608ced06f5715ef85e2bcc2a82a0d5453ae11b8ca2e51c2e6515cf2f",
+      "new_LLM_calls": 4,
+      "control_steps": 327
+    },
+    {
+      "seed": 514007,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514008,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514009,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514010,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514011,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514012,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514013,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514014,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514015,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514016,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514017,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514018,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514019,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514020,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514021,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514022,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514023,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514024,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514025,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514026,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514027,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514028,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514029,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514030,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514031,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514032,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514033,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514034,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514035,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514036,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514037,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514038,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514039,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514040,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514041,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514042,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514043,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514044,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514045,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514046,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514047,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514048,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514049,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514050,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514051,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514052,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514053,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514054,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514055,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514056,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514057,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514058,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514059,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514060,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514061,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514062,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514063,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514064,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514065,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514066,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514067,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514068,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514069,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514070,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514071,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514072,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514073,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514074,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514075,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514076,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514077,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514078,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514079,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514080,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514081,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514082,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514083,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514084,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514085,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514086,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514087,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514088,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514089,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514090,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514091,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514092,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514093,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514094,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514095,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514096,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514097,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514098,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514099,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514100,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514101,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514102,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514103,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514104,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514105,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514106,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514107,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514108,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514109,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514110,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514111,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514112,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514113,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514114,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514115,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514116,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514117,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514118,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514119,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514120,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514121,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514122,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514123,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514124,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514125,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514126,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514127,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514128,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514129,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514130,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514131,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514132,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514133,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514134,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514135,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514136,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514137,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514138,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514139,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514140,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514141,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514142,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514143,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514144,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514145,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514146,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514147,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514148,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514149,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514150,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514151,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514152,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514153,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514154,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514155,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514156,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514157,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514158,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514159,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514160,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514161,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514162,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514163,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514164,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514165,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514166,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514167,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514168,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514169,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514170,
+      "status": "shared_proposal_rejection",
+      "native_success": false,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514171,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514172,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514173,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514174,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514175,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514176,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514177,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514178,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514179,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514180,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514181,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514182,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514183,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514184,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514185,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514186,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514187,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514188,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514189,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514190,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514191,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514192,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514193,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514194,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514195,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514196,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514197,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514198,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514199,
+      "status": "shared_model_deadline",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    },
+    {
+      "seed": 514200,
+      "status": "pending",
+      "native_success": null,
+      "sha256": null,
+      "new_LLM_calls": null,
+      "control_steps": null
+    }
+  ],
+  "limits": "Post-hoc follow-up on the same 200 scenes, not an untouched test. Shared initial model deadlines remain unknown physical outcomes. More calls within the remaining 720-second model wait budget; backend checkpoint identity across dates is not attested."
+}

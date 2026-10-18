@@ -39,7 +39,7 @@ class EvidenceTests(unittest.TestCase):
                 evidence.wilson(successes, trials)
 
     def test_manifest(self):
-        self.assertEqual(evidence.verify(), 17)
+        self.assertEqual(evidence.verify(), 18)
 
     def test_four_method_overview(self):
         gallery = json.loads((evidence.DATA / "cases.json").read_text())

@@ -10,6 +10,10 @@
       "sha256": "39f344efde2536d2e128e02463b3805f9bc5bd1212944204ff988115b460f3e6"
     },
     {
+      "path": "data/dish_loop.json",
+      "sha256": "95977966ea6b597a4c709802e7b28e24e175080c756dadb399321cf8203e3ddd"
+    },
+    {
       "path": "data/feedback.json",
       "sha256": "c40ab3531781f2e66f1ab3aaf3f79cea13c9996e4a594c60eabcdc4aea50df74"
     },

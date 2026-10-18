@@ -4,52 +4,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Recorded Astra robot-control experiments: zero-shot trajectories, authored controllers, residual RL, and action-observe feedback.">
-  <meta name="theme-color" content="#16362d">
+  <meta name="theme-color" content="#06070a">
   <title>Astra Control Lab | Robot control experiments</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=2">
-  <script src="app.js?v=2" defer></script>
+  <link rel="stylesheet" href="style.css?v=4">
+  <script src="app.js?v=3" defer></script>
 </head>
 <body>
 <a class="skip" href="#replay">Skip to replay</a>
 <header class="masthead wrap">
-  <a class="brand" href="#" aria-label="Astra Control Lab home"><span class="brand-mark">a*</span> ASTRA <span>/ CONTROL LAB</span></a>
+  <a class="brand" href="#" aria-label="Astra Control Lab home"><span class="brand-mark" aria-hidden="true">●</span> astra <span>/ control lab</span></a>
   <nav aria-label="Main"><a href="#replay">Recordings</a><a href="#evidence">Results</a><a href="https://github.com/pscyk/astra-control-lab">Code ↗</a></nav>
 </header>
 <main>
   <section class="hero wrap">
     <div>
-      <p class="eyebrow"><span class="dot"></span> SIMULATION / RESEARCH RECORD</p>
-      <h1>Robot control<br><em>with Astra.</em></h1>
-      <p class="lede">Astra produces action trajectories from an instruction and observations. These studies test learned corrections and feedback during execution.</p>
-      <p class="hero-note">The four-panel view shows recordings from separate experiments. Each panel identifies its task, seed, and input restrictions.</p>
-      <div class="hero-links"><a class="button dark" href="?view=overview#replay">View all four methods <span>↓</span></a><a href="?view=drawer#replay">Action–observe demo ↗</a></div>
+      <p class="eyebrow">~/astra-control-lab · simulation studies</p>
+      <h1>Robot control with Astra</h1>
+      <p class="lede">Astra predicts robot actions from instructions and observations. These experiments test learned corrections and feedback during execution.</p>
+      <div class="hero-links"><a class="button dark" href="?view=overview#replay">View four methods <span aria-hidden="true">↓</span></a><a href="?view=drawer#replay">Drawer feedback pair ↗</a></div>
     </div>
     <div class="hero-art" aria-hidden="true">
       <svg viewBox="0 0 440 390" fill="none">
         <path d="M20 330H420M50 30V350M390 30V350M20 80H420" stroke="currentColor" opacity=".14"/>
         <circle cx="245" cy="215" r="121" stroke="currentColor" stroke-dasharray="3 8" opacity=".4"/>
-        <ellipse cx="244" cy="316" rx="123" ry="26" fill="#16362d" opacity=".08"/>
-        <ellipse cx="245" cy="272" rx="85" ry="19" fill="#f8f5ec" stroke="currentColor" stroke-width="3"/>
-        <path d="M160 272C168 317 322 317 330 272" fill="#f8f5ec" stroke="currentColor" stroke-width="3"/>
+        <ellipse cx="244" cy="316" rx="123" ry="26" fill="currentColor" opacity=".08"/>
+        <ellipse cx="245" cy="272" rx="85" ry="19" fill="var(--surface)" stroke="currentColor" stroke-width="3"/>
+        <path d="M160 272C168 317 322 317 330 272" fill="var(--surface)" stroke="currentColor" stroke-width="3"/>
         <ellipse cx="245" cy="272" rx="64" ry="11" stroke="currentColor" opacity=".4"/>
-        <path d="M183 0V106L155 151V194L179 218L197 199L181 182V158L210 119V0" fill="#d9ed8d" stroke="currentColor" stroke-width="3"/>
-        <path d="M243 0V106L271 151V194L247 218L229 199L245 182V158L216 119V0" fill="#d9ed8d" stroke="currentColor" stroke-width="3"/>
-        <rect x="170" y="45" width="87" height="54" rx="7" fill="#16362d"/>
-        <circle cx="213" cy="72" r="13" stroke="#f4f1e7" stroke-width="3"/>
-        <path d="M214 227V255M204 245L214 255L224 245" stroke="#b4482f" stroke-width="2" stroke-dasharray="4 3"/>
+        <path d="M183 0V106L155 151V194L179 218L197 199L181 182V158L210 119V0" fill="var(--surface)" stroke="currentColor" stroke-width="3"/>
+        <path d="M243 0V106L271 151V194L247 218L229 199L245 182V158L216 119V0" fill="var(--surface)" stroke="currentColor" stroke-width="3"/>
+        <rect x="170" y="45" width="87" height="54" rx="2" fill="currentColor"/>
+        <circle cx="213" cy="72" r="13" stroke="var(--background)" stroke-width="3"/>
+        <path d="M214 227V255M204 245L214 255L224 245" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"/>
         <path d="M315 169H373V198" stroke="currentColor"/>
-        <text x="295" y="153" fill="currentColor" font-size="10" font-family="monospace">GRIPPER / DISH</text>
-        <text x="63" y="365" fill="currentColor" font-size="11" font-family="monospace">ILLUSTRATION / NOT A ROLLOUT</text>
+        <text x="295" y="153" fill="currentColor" font-size="10">gripper / dish</text>
       </svg>
-      <span class="stamp">SCHEMATIC<br>NOT SIMULATOR OUTPUT</span>
     </div>
   </section>
-  <div class="ticker"><div class="wrap">Playback and result checks run without a GPU or model access.</div></div>
   <section id="replay" class="replay-section wrap">
-    <div class="section-heading"><div><p class="eyebrow">01 / RECORDINGS</p><h2>Compare the recordings</h2></div><span class="tag">RECORDED SIMULATION</span></div>
+    <div class="section-heading"><div><p class="eyebrow">~/recordings</p><h2>Recorded runs</h2></div></div>
     <div id="case-buttons" class="case-buttons" role="group" aria-label="Select a recorded case"></div>
-    <p id="load-status" role="status">Loading the evidence…</p>
+    <p id="load-status" role="status">Loading recordings and results.</p>
     <noscript>Enable JavaScript for playback. The repository also contains the JSON results and MP4 recordings.</noscript>
     <div class="case-heading"><h3 id="case-title">All four methods</h3><p id="case-meta"></p></div>
     <p id="comparison-scope" class="scope-note" role="note" hidden></p>
@@ -58,38 +54,47 @@
     <div class="transport"><button id="play" class="button dark" disabled>Play all four</button><button id="reset" class="button" disabled>Reset</button><label for="timeline" class="sr-only">Seek the displayed recordings</label><input id="timeline" type="range" min="0" max="1" value="0" step="0.05" disabled><output id="clock" for="timeline">0.0 s</output></div>
     <a id="case-link" class="case-share" href="?view=overview#replay">Link to this view ↗</a>
     <div class="case-notes"><p id="case-description"></p><p id="timing" class="muted"></p></div>
-    <p class="fine">The clips are post-hoc examples, not a representative sample. Original video captions remain unchanged; none of the robot motion is generated for this page.</p>
+    <p class="fine">The clips show cases selected after evaluation, not a representative sample. They retain the original video captions.</p>
   </section>
   <section id="evidence" class="evidence-section">
-    <div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / RESULTS</p><h2>Results by study</h2></div><span class="tag light">PRELIMINARY</span></div>
+    <div class="wrap"><div class="section-heading"><div><p class="eyebrow">~/results</p><h2>Results by study</h2></div><span class="tag">Preliminary</span></div>
       <h3 class="study-heading">Dish placement · COLOSSEUM V2</h3>
-      <div class="evidence-grid"><div><p class="evidence-intro">The base, random-search residual, and RL residual share each completed Astra proposal and have the same native step budget. The rates retain all 200 planned scenes, including model deadlines.</p><div id="scores"></div><p class="fine">Completion within the model and execution budgets. The 95% Wilson intervals apply across scenes, not training runs. The residual uses one training seed.</p></div>
-      <aside class="receipt"><p class="eyebrow">RL RESIDUAL VS BASE</p><div class="receipt-number"><strong id="rescues">—</strong><span>base failures repaired</span></div><div class="receipt-number negative"><strong id="regressions">—</strong><span>base successes lost</span></div><hr><p>The 34 shared model deadlines count as noncompletion, although their physical outcomes remain unknown.</p><p>One proposal fails validation. The other 165 completed proposals produce 495 native rollouts across the three methods.</p><a href="data/study.json">Inspect all 600 assignments ↗</a></aside></div>
+      <div class="evidence-grid"><div><p class="evidence-intro">The base, random-search residual, and RL residual use the same Astra proposal and native step budget for each scene. Rates include all 200 planned scenes, including model timeouts.</p>
+        <div id="scores">
+          <div id="dish-loop-result" class="score score-unmeasured">
+            <div class="score-top"><span>Astra · action–observe loop</span><strong id="dish-loop-score">Preparing</strong></div>
+            <div id="dish-loop-bar"></div>
+            <p id="dish-loop-status" class="score-meta">Loading the follow-up run record.</p>
+            <a href="data/dish_loop.json">Run record ↗</a> · <a href="#loop-study">Earlier RLBench study: <span id="loop-summary">—</span> fresh scenes ↗</a>
+          </div>
+        </div>
+        <p class="fine">Success requires completion within the model and execution budgets. The 95% Wilson intervals measure variation across scenes; they do not cover training variability. The residual uses one training seed.</p></div>
+      <aside class="receipt"><p class="eyebrow">RL residual / base</p><div class="receipt-number"><strong id="rescues">—</strong><span>base failures repaired</span></div><div class="receipt-number negative"><strong id="regressions">—</strong><span>base successes lost</span></div><hr><p>The 34 shared model timeouts count as noncompletion. Their physical outcomes remain unknown.</p><p>One proposal fails validation. The other 165 completed proposals produce 495 native rollouts across the three methods.</p><a href="data/study.json">All 600 assignments ↗</a></aside></div>
       <div class="separate-studies">
         <h3>Separate RLBench studies</h3>
-        <p>These results include the authored controller and action–observe loop. Different tasks, seeds, inputs, and budgets prevent a ranking against the dish-placement scores.</p>
+        <p>These studies use different tasks, seeds, inputs, and budgets. Their scores cannot rank the methods against dish placement.</p>
         <div class="study-grid">
           <article><h4>Authored controller</h4><p class="study-count"><strong id="teacher-score">—</strong> native successes</p><p>OpenDrawer, seeds 9400–9404 and three variations per seed. The controller uses private simulator state and makes no runtime Astra calls.</p><a href="data/teacher.json">Controller records ↗</a></article>
-          <article><h4>Action–observe loop</h4><p class="study-count"><strong id="loop-score">—</strong> feedback / <strong id="loop-base-score">—</strong> one-shot</p><p>Three fresh scenes: drawer, peg insertion, and cups. Feedback also scores <span id="known-loop-score">—</span> on the three known failures. The studies change the prompt and depth feedback as well as the call count.</p><p>Median model wait: 18.60 seconds per call. No RL updates.</p><a href="?view=drawer#replay">Open the action–observe pair ↗</a> · <a href="data/feedback.json">Records ↗</a></article>
+          <article id="loop-study"><h4>Action–observe loop</h4><p class="study-count"><strong id="loop-score">—</strong> feedback / <strong id="loop-base-score">—</strong> one-shot</p><p>Three fresh scenes: drawer, peg insertion, and cups. Feedback also scores <span id="known-loop-score">—</span> on the three known failures. Prompt and depth feedback change along with call count.</p><p>Median model wait: 18.60 seconds per call; no RL updates.</p><a href="?view=drawer#replay">Drawer feedback pair ↗</a> · <a href="data/feedback.json">Records ↗</a></article>
         </div>
       </div>
     </div>
   </section>
   <section id="methods" class="methods wrap">
-    <p class="eyebrow">03 / METHODS</p><h2>Model calls and policy updates</h2>
+    <p class="eyebrow">~/methods</p><h2>Model calls and policy updates</h2>
     <div class="method-grid">
-      <article><span class="method-number">01</span><h3>Zero-shot trajectory</h3><p>Astra returns actions from an instruction and observations, without task demonstrations in the prompt or weight updates. Inputs include calibration and robot state; the prompts had development work.</p><div class="flow">OBSERVE → ASTRA → EXECUTE</div><span class="method-tag">RUNTIME LLM CALL</span></article>
-      <article><span class="method-number">02</span><h3>Authored controller</h3><p>Astra writes Python before execution. The drawer code reads private simulator state, which makes it a privileged training teacher rather than an observation-only policy.</p><div class="flow">ASTRA → CODE → EXECUTE</div><span class="method-tag">PRIVILEGED REFERENCE</span></article>
-      <article><span class="method-number">03</span><h3>Learned residual</h3><p>Four policy-gradient updates fit three bounded corrections using simulator reward. Evaluation freezes those corrections and Astra, with no student imitation or online weight update.</p><div class="flow">ASTRA → + Δ → EXECUTE</div><span class="method-tag">4 UPDATES / 3 PARAMETERS</span></article>
-      <article><span class="method-number">04</span><h3>Action–observe loop</h3><p>Astra receives new observations after short action phases and revises the remaining plan. Extra calls supply feedback without changing model weights.</p><div class="flow">ASTRA → ACT → OBSERVE ↺</div><a class="method-tag" href="?view=drawer#replay">VIEW THE DRAWER RECORDING ↗</a></article>
+      <article><span class="method-number">01</span><h3>Zero-shot trajectory</h3><p>Astra returns actions from an instruction and observations. Inputs include calibration and robot state. Prompt development precedes evaluation; the prompt contains no task demonstrations, and model weights stay fixed.</p><div class="flow">observe → Astra → execute</div><span class="method-tag">Runtime model call</span></article>
+      <article><span class="method-number">02</span><h3>Authored controller</h3><p>Astra writes Python before execution. The drawer controller reads private simulator state, so it serves as a privileged training teacher. An observation-only policy cannot use those inputs.</p><div class="flow">Astra → code → execute</div><span class="method-tag">Private simulator state</span></article>
+      <article><span class="method-number">03</span><h3>Learned residual</h3><p>Four policy-gradient updates fit three bounded corrections using simulator reward. Evaluation keeps the corrections and Astra weights fixed. This method uses no student imitation.</p><div class="flow">Astra → + Δ → execute</div><span class="method-tag">4 updates / 3 parameters</span></article>
+      <article><span class="method-number">04</span><h3>Action–observe loop</h3><p>Astra receives new observations after short action phases and revises the remaining plan. Extra calls supply feedback while model weights stay fixed.</p><div class="flow">Astra → act → observe ↺</div><a class="method-tag" href="?view=drawer#replay">Drawer recording ↗</a></article>
     </div>
   </section>
-  <section class="lab-note wrap"><span class="note-index">!</span><div><p class="eyebrow">FAILURE ANALYSIS</p><h2>Grasp and placement failures</h2><p>The residual repairs 53 base failures but causes four regressions. Random search already supplies much of the gain over the base: RL wins 16 pairs and loses four against that control. The remaining grasp failures need a different intervention because the residual only changes later poses.</p><p>The feedback run opens one drawer that the one-shot run does not, at a cost of eight extra calls. Its first returned observation is not bitwise identical to the baseline's. This is a useful development case, not a controlled estimate of a general feedback benefit.</p><p class="fine">The studies do not test a combined feedback-plus-residual policy. Native success does not establish safe contact, and these records provide no full-suite or real-robot result.</p></div></section>
-  <section class="reproduce wrap"><div><p class="eyebrow">04 / REPRODUCTION</p><h2>Check the saved results</h2><p>Python 3.10 or later; the main package uses only the standard library.</p></div><pre><code>python3 -m astra_lab verify
+  <section class="lab-note wrap"><div><p class="eyebrow">~/failures</p><h2>Grasp and placement failures</h2><p>The residual repairs 53 base failures but causes four regressions. Random search accounts for much of the gain: RL wins 16 pairs and loses four against that control. The remaining grasp failures need a different correction because the residual only changes later poses.</p><p>The feedback run opens one drawer that the one-shot run does not, at a cost of eight extra calls. Its first returned observation differs at the bit level from the baseline's, so this development case cannot isolate the benefit of feedback.</p><p class="fine">The studies do not test a combined feedback-plus-residual policy. Simulator success does not establish safe contact. These records cover neither the full task suite nor real robots.</p></div></section>
+  <section class="reproduce wrap"><div><p class="eyebrow">~/reproduce</p><h2>Check the saved results</h2><p>Playback and result checks need no GPU or model access. Use Python 3.10 or later; the main package needs only the standard library.</p></div><pre><code>python3 -m astra_lab verify
 python3 -m astra_lab report
 python3 -m astra_lab replay-training
-python3 -m unittest discover -s tests -v</code></pre><p class="fine">The commands check exported records and replay saved training updates. New robot episodes require the original simulator setup and model access, which this package does not include. The historical model alias is gpt-6-astra; the logs do not attest an immutable backend checkpoint.</p></section>
+python3 -m unittest discover -s tests -v</code></pre><p class="fine">These commands check exported records and replay saved training updates. New robot episodes need the original simulator setup and model access; the package includes neither. The logs identify the model as <code>gpt-6-astra</code> but do not verify a fixed backend checkpoint.</p></section>
 </main>
-<footer class="wrap"><span>ASTRA CONTROL LAB <span class="muted">/ C Y K SAGAR</span></span><a href="https://github.com/pscyk/astra-control-lab">Repository and research report ↗</a><span class="muted">OCTOBER 2026 / SIMULATION STUDIES</span></footer>
+<footer class="wrap"><span>Astra Control Lab <span class="muted">/ C Y K Sagar</span></span><a href="https://github.com/pscyk/astra-control-lab">Repository and research report ↗</a><span class="muted">October 2026</span></footer>
 </body>
 </html>

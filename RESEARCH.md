@@ -72,6 +72,6 @@ Start with a small development diagnostic. Expand to at least three independent 
 
 The records do not support a full-suite score or an external-model ranking. They cover neither bimanual manipulation nor real robots, and they lack a matched asynchronous test or broad robustness evaluation. This release also lacks collision, jerk, drop, and path-length metrics; native task success does not supply those measurements.
 
-All planned assignments in the displayed studies are accounted for. A four-method experiment on the same task and scene schedule is still absent. Running it would require a new protocol, particularly because the authored controller receives privileged state while the other methods do not. The 34 dish-study deadlines remain in the denominator rather than receiving post-hoc retries.
+The original studies account for every planned assignment. A new registered follow-up adds action–observe control on the same 200 dish scenes; [DISH_LOOP.md](DISH_LOOP.md) records its protocol and commands. Its score remains pending until the full audit completes. The 34 initial model deadlines stay in the denominator rather than receiving post-hoc retries. The privileged authored drawer controller remains a separate study.
 
 The immediate research target is selective correction with reliable acquisition feedback. A larger model or training sweep is not yet justified by these results.

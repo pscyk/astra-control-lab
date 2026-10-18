@@ -155,6 +155,7 @@ function scores(study) {
     container.className = "score";
     container.innerHTML = `<div class="score-top"><span>${labels[mode]}</span><strong>${percentage.toFixed(1)}%</strong></div><div class="score-track"><div class="score-fill" style="width:${percentage}%"></div></div><div class="score-meta">${successes}/${rows.length} planned scenes · 95% CI ${interval[0]}–${interval[1]}%</div>`;
     element("scores").append(container);
+    if (mode === "zero") container.after(element("dish-loop-result"));
   });
   const records = new Map(study.outcomes.map(row => [`${row.seed}/${row.mode}`, row]));
   let rescued = 0;
@@ -181,17 +182,52 @@ function separateScores(teacher, feedback) {
     const rows = feedback.rows.filter(row => row.cohort === cohort && row.mode === mode);
     element(id).textContent = `${rows.filter(row => row.success).length}/${rows.length}`;
   }
+  element("loop-summary").textContent = element("loop-score").textContent;
+}
+
+function dishLoopScore(followup) {
+  const rows = followup.outcomes;
+  const seeds = new Set(rows.map(row => row.seed));
+  const phases = {preflight: "Checking runner", running: "Running", stopped: "Run stopped", complete: "Complete"};
+  const statuses = ["pending", "completed", "shared_model_deadline", "shared_proposal_rejection", "infrastructure_error"];
+  if (followup.schema_version !== 1 || followup.task !== "PlaceDishInRack-v1" || rows.length !== 200 || seeds.size !== 200 || !Object.hasOwn(phases, followup.phase)) throw new Error("Invalid dish follow-up schema");
+  for (let seed = 514001; seed <= 514200; seed += 1) {
+    if (!seeds.has(seed)) throw new Error("Missing follow-up scene");
+  }
+  rows.forEach(row => {
+    if (!statuses.includes(row.status)) throw new Error("Unknown follow-up outcome status");
+    if (["pending", "infrastructure_error", "shared_model_deadline"].includes(row.status) ? row.native_success !== null : typeof row.native_success !== "boolean") throw new Error("Invalid follow-up outcome");
+  });
+  const completed = rows.filter(row => row.status === "completed").length;
+  const inherited = rows.filter(row => ["shared_model_deadline", "shared_proposal_rejection"].includes(row.status)).length;
+  const complete = followup.phase === "complete";
+  if (complete && completed + inherited !== 200) throw new Error("Follow-up is incomplete");
+  element("dish-loop-result").classList.toggle("score-unmeasured", !complete);
+  element("dish-loop-bar").replaceChildren();
+  if (complete) {
+    const successes = rows.filter(row => row.native_success === true).length;
+    const percentage = successes / 2;
+    const interval = wilson(successes, 200).map(value => (100 * value).toFixed(1));
+    element("dish-loop-score").textContent = `${percentage.toFixed(1)}%`;
+    element("dish-loop-bar").innerHTML = `<div class="score-track"><div class="score-fill" style="width:${percentage}%"></div></div>`;
+    element("dish-loop-status").textContent = `${successes}/200 planned scenes · 95% CI ${interval[0]}–${interval[1]}% · post-hoc follow-up`;
+  } else {
+    element("dish-loop-score").textContent = phases[followup.phase];
+    const updated = new Date(followup.updated_unix * 1000).toLocaleString();
+    element("dish-loop-status").textContent = `${completed}/${200 - inherited} native episodes audited; ${inherited} shared proposal outcomes retained. Snapshot: ${updated}. The score updates after the full run and audit.`;
+  }
 }
 
 async function initialize() {
   try {
-    const [gallery, study, teacher, feedback] = await Promise.all(["cases", "study", "teacher", "feedback"].map(async name => {
-      const response = await fetch(`data/${name}.json?v=2`);
+    const [gallery, study, teacher, feedback, followup] = await Promise.all(["cases", "study", "teacher", "feedback", "dish_loop"].map(async name => {
+      const response = await fetch(`data/${name}.json?v=3`);
       if (!response.ok) throw new Error(`Cannot load ${name}`);
       return response.json();
     }));
     scores(study);
     separateScores(teacher, feedback);
+    dishLoopScore(followup);
     gallery.cases.forEach((record, index) => {
       const button = document.createElement("button");
       button.textContent = `${String(index + 1).padStart(2, "0")} / ${record.title}`;

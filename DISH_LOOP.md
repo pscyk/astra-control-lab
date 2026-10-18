@@ -1,0 +1,70 @@
+# Dish action–observe follow-up
+
+Registered on 18 October 2026. Status: preliminary, with results published only after all planned assignments pass the audit.
+
+The original dish comparison tested zero-shot Astra, random-search corrections, and an RL residual. This follow-up adds action–observe control without replacing any original result or retraining a policy.
+
+## Fixed protocol
+
+| Setting | Value |
+|---|---|
+| Task and condition | `PlaceDishInRack-v1`, `NONE` |
+| Scene schedule | Seeds 514001–514200 in order |
+| Initial proposal | Reuse each recorded Astra proposal; verify exact native reset, camera pixels, robot state, and calibration |
+| Control | Original `pd_ee_delta_pose`, native 20 Hz, unchanged action caps |
+| Episode cap | 327 native steps |
+| Feedback schedule | Review at steps 64, 128, 192, and 256, unless the episode has ended |
+| Feedback input | Before/current RGB, calibration, robot state, action history, and pending commands |
+| Model | Historical alias `gpt-6-astra`, medium reasoning, tools disabled |
+| Model budget | 720 seconds total, charging the archived initial wait and new feedback waits; each new call has a cap of 180 seconds |
+| Fallback | Keep pending actions after an invalid response or model deadline |
+| Stopping | Native success/termination, model-requested stop, or step cap |
+| Queue limits | 36 hours; stop before a new episode if free disk falls below 1 GiB |
+| Training | None |
+
+There are 165 eligible native episodes. The other assignments retain 34 shared initial model deadlines and one shared proposal rejection. No scene receives a replacement initial call. The denominator remains 200, and deadline cases retain unknown physical outcomes.
+
+Infrastructure errors stop the queue rather than becoming task failures. The runner keeps the incomplete assignments and suppresses the completion percentage until the audit accounts for all 200 scenes.
+
+## Checks before the queue
+
+The development scene is seed 508201, outside the evaluation schedule. The transport probe verifies an exact archived reset and a genuine Astra response. With feedback disabled, the new executor must reproduce the archived baseline action and robot-state sequence across all 327 steps. With feedback enabled, it must match the first 64 steps before making a new call.
+
+Each completed episode receives an audit of native success flags, diagnostic records, action transforms, call limits, tool-free model events, and file hashes. Native simulator state enters the audit files, not model requests. Unit tests check call accounting, interrupted command durations, and incomplete-denominator handling.
+
+## Run
+
+This command needs the original native harness, simulator checkout, assets, and authenticated Astra transport. The public replay package alone does not supply them. Use the same pinned runtime as the original comparison.
+
+```bash
+export PYTHONPATH="$SIMULATOR:$HARNESS"
+export PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json
+
+"$PYTHON" scripts/run_dish_loop.py --harness "$HARNESS" --output "$RUN" --prepare
+REGISTRATION=$(sha256sum "$RUN/protocol.json" | cut -d' ' -f1)
+"$PYTHON" scripts/run_dish_loop.py --harness "$HARNESS" --output "$RUN" --registration "$REGISTRATION" --smoke base
+"$PYTHON" scripts/run_dish_loop.py --harness "$HARNESS" --output "$RUN" --registration "$REGISTRATION" --smoke feedback
+"$PYTHON" scripts/run_dish_loop.py --harness "$HARNESS" --output "$RUN" --registration "$REGISTRATION"
+```
+
+The registration hashes the implementation and harness sources before execution. A started queue refuses an automatic restart. Results stay in a new directory, leaving original records untouched. `--publish-on-finish` additionally commits and pushes the two public result files after completion or a stopped run; it refuses publication when unrelated repository edits are present.
+
+## Supervisor recovery
+
+The first evaluation episode completed, but its supervisor exited before recording the result in the queue status. The cause is unconfirmed. The result passed an independent audit and remains in the comparison, including its failure outcome. It was not rerun.
+
+`scripts/resume_dish_loop.py` verifies that the recorded processes are absent, acquires the native-run lock, and audits existing results before continuing unattempted assignments. It refuses to replay an incomplete attempt. The recovery receipt preserves the original status hash, result hashes, registration hash, and elapsed queue time. The registered policy code and scene schedule are unchanged.
+
+The continuation runs under the user service `astra-dish-loop-20261018.service`, with automatic restart disabled. A crash needs investigation, not an automatic scene retry. Private logs and recovery records remain beside the registered protocol.
+
+```bash
+systemctl --user status astra-dish-loop-20261018.service
+tail -f "$RUN/queue.log"
+```
+
+## Interpretation
+
+This is a post-hoc follow-up after inspection of the original study, not an untouched final test. Tasks, scenes, initial proposals, and native execution limits match. The loop makes more model calls within the remaining wait budget; the logs do not attest an immutable Astra checkpoint across dates. Simulation pauses during calls, so this is not a real-time or asynchronous-control result.
+
+The separate RLBench feedback study remains available on the page. Its 2/3 fresh-scene result is not a dish-placement score.

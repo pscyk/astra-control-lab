@@ -69,6 +69,8 @@ There are 34 shared model deadlines. They count as noncompletion within the budg
 
 The model deadline is 720 seconds, and execution has a cap of 327 native steps at 20 Hz. Success means satisfying the simulator's native predicate, which does not certify safe contact or insertion into a particular rack slot.
 
+A registered action–observe follow-up reuses the same 200 scenes and initial proposals. It requests new observations at 64-step intervals, allows up to four feedback calls, and retains the 327-step execution cap. The page reports run status until all outcomes pass the audit; it does not show a partial success rate. [Protocol and commands](DISH_LOOP.md).
+
 The residual uses one training seed. The intervals measure uncertainty across these scenes, not variation across training runs. This study supplies no full-suite COLOSSEUM score, bimanual result, or basis for a state-of-the-art claim.
 
 ## Residual training
