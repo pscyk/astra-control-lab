@@ -186,7 +186,7 @@ function separateScores(teacher, feedback) {
 async function initialize() {
   try {
     const [gallery, study, teacher, feedback] = await Promise.all(["cases", "study", "teacher", "feedback"].map(async name => {
-      const response = await fetch(`data/${name}.json`);
+      const response = await fetch(`data/${name}.json?v=2`);
       if (!response.ok) throw new Error(`Cannot load ${name}`);
       return response.json();
     }));
