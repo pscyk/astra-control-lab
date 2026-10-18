@@ -1,6 +1,6 @@
 # What we learned
 
-Snapshot: 18 October 2026. Author: C Y K Sagar.
+Snapshot: 19 October 2026. Author: C Y K Sagar.
 
 ## 1. The strongest local evidence
 
@@ -26,6 +26,12 @@ The prior failure audit found 41 scenes where all three executed Astra variants 
 The displayed dish cases were selected after results were available. They use the first seed for each outcome pattern within an earlier 103-scene four-method overlap. That selection is not random. Do not estimate rates from the videos.
 
 ## 3. Feedback recovery and call cost
+
+**Preliminary, capacity-recovered:** the dish action–observe follow-up completed at 32/200 (16.0%; 95% Wilson interval 11.6–21.7%). All 165 eligible episodes passed audit. Against the base, the loop repairs 13 failures and loses two successes, a net increase of 5.5 percentage points. It remains below random-search corrections at 29.0% and the RL residual at 35.0%.
+
+The loop succeeds in nine scenes where the RL residual fails, but fails in 47 scenes where that residual succeeds. This supports investigating their different failure cases; it does not show that a combined policy will improve on the residual. The completed comparison is post-hoc. One model-capacity interruption required a user-authorized episode retry, which succeeded. Its earlier attempt remains archived, and the extra execution and call costs are disclosed. The result is not an unchanged no-retry comparison. [Full protocol and result](DISH_LOOP.md).
+
+The following smaller feedback study uses RLBench, not the dish task.
 
 **Preliminary:** fresh scenes move from 1/3 one-shot successes to 2/3 feedback successes. Previously diagnosed failures remain at 0/3 with feedback. The small fresh comparison has a two-sided exact McNemar p-value of 1.0.
 
@@ -72,6 +78,6 @@ Start with a small development diagnostic. Expand to at least three independent 
 
 The records do not support a full-suite score or an external-model ranking. They cover neither bimanual manipulation nor real robots, and they lack a matched asynchronous test or broad robustness evaluation. This release also lacks collision, jerk, drop, and path-length metrics; native task success does not supply those measurements.
 
-The original studies account for every planned assignment. A new registered follow-up adds action–observe control on the same 200 dish scenes; [DISH_LOOP.md](DISH_LOOP.md) records its protocol and commands. Its score remains pending until the full audit completes. The 34 initial model deadlines stay in the denominator rather than receiving post-hoc retries. The privileged authored drawer controller remains a separate study.
+The original studies and completed dish follow-up account for every planned assignment. [DISH_LOOP.md](DISH_LOOP.md) records the follow-up's protocol, capacity-retry amendment, and result. The 34 initial model deadlines stay in the denominator without retries. The privileged authored drawer controller remains a separate study.
 
 The immediate research target is selective correction with reliable acquisition feedback. A larger model or training sweep is not yet justified by these results.

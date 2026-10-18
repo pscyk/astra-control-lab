@@ -1,6 +1,6 @@
 # Release checks
 
-Date: 18 October 2026.
+Date: 19 October 2026.
 
 ## Local checks
 
@@ -21,6 +21,8 @@ Date: 18 October 2026.
 | Capacity retry guard | Accepts the recorded capacity error only; rejects completed task failures, other transport errors, and changed artifacts |
 | Report styling | Uses cyks.in's color values, grid, and local font stacks; no downloaded fonts |
 | Dish follow-up baseline smoke | All 327 native steps match the archived development baseline exactly |
+| Completed dish follow-up | All 165 eligible episodes pass the final audit; 200 assignments retained; 32 successes |
+| Capacity-recovery preservation | All 133 previously completed episode hashes unchanged; interrupted attempt retained and verified |
 | New model calls or simulator rollouts | The new action–observe follow-up executes both; see `DISH_LOOP.md` |
 
 The transform check uses 165 original saved proposals. Each proposal is checked at zero, the frozen RL mean, and `[-2, 2, -2]`. This is numerical parity, not new simulation evidence.

@@ -55,11 +55,12 @@ The historical logs request `gpt-6-astra`. They do not identify an immutable bac
 
 ## Dish placement results
 
-Status: preliminary. The comparison covers one clean COLOSSEUM V2 task, `PlaceDishInRack-v1`, on 200 planned scenes with seeds `514001` through `514200`. All methods share the initial Astra proposal for each scene and have the same execution budget. The policies remain frozen throughout evaluation.
+Status: preliminary. The comparison covers one clean COLOSSEUM V2 task, `PlaceDishInRack-v1`, on 200 planned scenes with seeds `514001` through `514200`. Methods share the initial Astra proposal and per-attempt execution cap. The action–observe follow-up includes one capacity-error retry, so its total attempt cost differs. The policies remain frozen throughout evaluation.
 
 | Method | Completed / planned | Completion rate | 95% Wilson interval |
 |---|---:|---:|---:|
 | Astra, no correction | 21 / 200 | 10.5% | 7.0–15.5% |
+| Astra, action–observe (capacity-recovered) | 32 / 200 | 16.0% | 11.6–21.7% |
 | Astra + random-search residual | 58 / 200 | 29.0% | 23.2–35.6% |
 | Astra + RL residual | 70 / 200 | 35.0% | 28.7–41.8% |
 
@@ -69,7 +70,7 @@ There are 34 shared model deadlines. They count as noncompletion within the budg
 
 The model deadline is 720 seconds, and execution has a cap of 327 native steps at 20 Hz. Success means satisfying the simulator's native predicate, which does not certify safe contact or insertion into a particular rack slot.
 
-A registered action–observe follow-up reuses the same 200 scenes and initial proposals. It requests new observations at 64-step intervals, allows up to four feedback calls, and retains the 327-step execution cap. The page reports run status until all outcomes pass the audit; it does not show a partial success rate. [Protocol and commands](DISH_LOOP.md).
+The action–observe follow-up completed on 19 October 2026. All 165 eligible episodes passed audit; all 200 assignments remain in the denominator. The loop repairs 13 base failures and loses two base successes. Its 16.0% completion rate remains below both residual methods. It requests new observations at 64-step intervals and allows up to four feedback calls within the 327-step attempt cap. One capacity-interrupted episode was retried with user approval and succeeded. The interrupted attempt is retained; this is a post-hoc, capacity-recovered comparison, not the original no-retry protocol. [Results, protocol, and commands](DISH_LOOP.md).
 
 The residual uses one training seed. The intervals measure uncertainty across these scenes, not variation across training runs. This study supplies no full-suite COLOSSEUM score, bimanual result, or basis for a state-of-the-art claim.
 

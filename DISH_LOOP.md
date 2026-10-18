@@ -1,8 +1,18 @@
 # Dish action–observe follow-up
 
-Registered on 18 October 2026. Status: preliminary, with results published only after all planned assignments pass the audit.
+Registered on 18 October 2026. Completed on 19 October 2026 at 04:12 IST. Status: preliminary, capacity-recovered.
 
 The original dish comparison tested zero-shot Astra, random-search corrections, and an RL residual. This follow-up adds action–observe control without replacing any original result or retraining a policy.
+
+## Completed result
+
+The loop succeeds in **32/200 planned scenes (16.0%)**, with a 95% Wilson interval of **11.6–21.7%**. All 165 eligible native episodes passed audit. The denominator retains 34 shared initial model deadlines and one rejected proposal; the deadlines remain unknown physical outcomes.
+
+Compared with the zero-shot base, the loop repairs 13 failures and loses two successes across 166 known pairs. The base scores 10.5%, random-search corrections score 29.0%, and the RL residual scores 35.0%. These are results for one clean dish task, not the full benchmark.
+
+One capacity-error episode was retried and succeeded. The preceding interrupted attempt used 128 native steps, two new model calls, and 73.23 seconds of feedback wait; its wall time was 81.67 seconds. Those costs are additional to the completed retry. Excluding that scene's recovered success leaves 31 successes, or 15.5% of all planned assignments, with the original interrupted physical outcome still unknown.
+
+The final audit checks all episode hashes, native outcomes, action transforms, model-call records, and input bindings. All 133 episodes completed before capacity recovery retain their original hashes. [Machine-readable results](docs/data/dish_loop.json) include the retry record and source hashes.
 
 ## Original protocol
 
