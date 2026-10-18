@@ -1,0 +1,115 @@
+{
+  "status": "preliminary",
+  "task": "RLBench / OpenDrawer",
+  "scope": "Privileged scripted Astra-authored controller, not an online GPT agent or learned student. Same seed/variation schedule; initial matching disclosed, not presumed.",
+  "controller_sha256": "2959118be4711195042e173e63c9ab450986f5bf3798c345a045fb35573f06b6",
+  "privileged_state": true,
+  "runtime_LLM_calls": 0,
+  "cases": [
+    {
+      "seed": 9400,
+      "variation": 0,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "8dde4661f052b044baaeb3b1b497e3a9a8c15511b5fa8153121ab3a75be554bf"
+    },
+    {
+      "seed": 9400,
+      "variation": 1,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "c6e347011447c94c3c62d7cbcdfbb2f7f0a5103b3445db0ed35de359eedb81ef"
+    },
+    {
+      "seed": 9400,
+      "variation": 2,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "6c409733f453a1264ba7439c4cc47670d99c6706bd3fc4fd5ae46f2afb0742d9"
+    },
+    {
+      "seed": 9401,
+      "variation": 0,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "0ba9704d86e33edabb8099ce6ffb91f41a376e0e3d43dc710051cb88ae581cba"
+    },
+    {
+      "seed": 9401,
+      "variation": 1,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "90095be9b2b43c7e29c28f1371f979029db60f49d5c07bb2f36ebf8d680a6368"
+    },
+    {
+      "seed": 9401,
+      "variation": 2,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "74be13acdcab4b9cbfb437166880d03e3d1152b78da58eba19151e13d0141248"
+    },
+    {
+      "seed": 9402,
+      "variation": 0,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "cf257a21bb4ae1a6dd2d0eb74ec324909f4ae6c2040d4d8d6c7689f5b24c8372"
+    },
+    {
+      "seed": 9402,
+      "variation": 1,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "e3ceb2dc7e72a31ec4d8e28eece23b56dddd7536b6fc7154922d8c27eaf87a2c"
+    },
+    {
+      "seed": 9402,
+      "variation": 2,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "655645d11373d21e8007d7fd2925dfdd45f4aeb86d9961c0c8db69c2502a484b"
+    },
+    {
+      "seed": 9403,
+      "variation": 0,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "ac799c3d30f087887313eb2694037ff010b22611495cb93f3ef96349060df2d6"
+    },
+    {
+      "seed": 9403,
+      "variation": 1,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "5c49c4b7274c88fd578e2830c2c77bb8bad85628d340d7061f1d6b07bd0bb209"
+    },
+    {
+      "seed": 9403,
+      "variation": 2,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "d343609ebb5a77209038e06b7e1b52c97f20f4344695bde4ff8ab6e5a1317ae3"
+    },
+    {
+      "seed": 9404,
+      "variation": 0,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "2c293c817f5c010d0358db45d58837e212d6d9957f0b7c88f65ea52eadb51092"
+    },
+    {
+      "seed": 9404,
+      "variation": 1,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "e0843bc8d269f607c6b91c175d56704fbb78ed55a45dc9e90f2f41ba3f2215cf"
+    },
+    {
+      "seed": 9404,
+      "variation": 2,
+      "native_success": true,
+      "commands": 8,
+      "source_sha256": "c99143370ae046312571999f0edc461a01d9610566024bedc635779f83b6630c"
+    }
+  ]
+}

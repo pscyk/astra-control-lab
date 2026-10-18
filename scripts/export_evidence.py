@@ -34,6 +34,25 @@ def select(data, keys):
     return {key: data[key] for key in keys}
 
 
+def scene_end(video):
+    probe = json.loads(subprocess.check_output([
+        "ffprobe", "-v", "error", "-select_streams", "v:0", "-show_streams", "-of", "json", str(video)]))["streams"][0]
+    frames = int(probe["nb_frames"])
+    if probe["r_frame_rate"] != "30/1" or frames <= 10:
+        raise ValueError("Unexpected drawer recording format")
+    tail = subprocess.check_output([
+        "ffmpeg", "-v", "error", "-i", str(video), "-vf", f"select=gte(n\\,{frames - 11})",
+        "-fps_mode", "passthrough", "-f", "rawvideo", "-pix_fmt", "rgb24", "pipe:1"])
+    frame_bytes = probe["width"] * probe["height"] * 3
+    if len(tail) != 11 * frame_bytes:
+        raise ValueError("Incomplete drawer tail decode")
+    def green(frame):
+        return all(value <= 10 if index % 3 != 1 else value >= 245 for index, value in enumerate(frame))
+    if green(tail[:frame_bytes]) or not green(tail[frame_bytes:]):
+        raise ValueError("Expected exactly ten trailing green status frames")
+    return (frames - 10) / 30
+
+
 def main():
     parser = argparse.ArgumentParser(description="Export allowlisted fields from the original local research archive.")
     parser.add_argument("archive", type=Path)
@@ -94,9 +113,9 @@ def main():
         return f"media/{path.name}"
     cases = []
     descriptions = [
-        (514006, "The repair", "The frozen residual changes the carry and release. Native success changes from false to true."),
-        (514024, "The regression", "The base trajectory succeeds. The same residual moves the dish outside the target region."),
-        (514019, "The missed grasp", "Neither method acquires the dish. A later placement correction cannot fix an empty grasp."),
+        (514006, "Residual repair", "The base trajectory fails on this scene; the learned correction changes the carry and release and satisfies native success."),
+        (514024, "Residual regression", "The base trajectory succeeds, but the residual moves the dish outside the target region."),
+        (514019, "Missed grasp", "Neither method acquires the dish, so a later placement correction cannot complete the task."),
     ]
     for seed, title, description in descriptions:
         case = {"id": str(seed), "title": title, "description": description, "seed": seed,
@@ -118,10 +137,11 @@ def main():
                 write("trajectory.json", {"seed": seed, "frame": "world", "quaternion_order": "xyzw",
                     "commands": result["proposal_commands"], "source_sha256": record["result"]["sha256"]})
         cases.append(case)
-    drawer = {"id": "drawer", "title": "Observe. Try again.", "seed": 42300,
+    drawer = {"id": "drawer", "title": "Action–observe loop", "seed": 42300,
         "study": "RLBench / OpenDrawer / fresh development scene",
-        "description": "The feedback run opens the drawer. It uses eight more Astra calls after the shared first proposal. This is not RL.",
-        "timing": "Recorded frames only. Model wait is omitted. Playback is not wall-clock or physical-time evidence.", "tracks": []}
+        "description": "The feedback run opens the drawer after eight extra Astra calls. Both runs reuse the initial proposal; neither updates model weights.",
+        "scope_notice": "This pair shares the initial proposal, but the first returned drawer observation was not bitwise identical. The feedback run also changes the prompt and depth feedback.",
+        "timing": "Recorded frames only; model wait is omitted. Shared controls hold the last scene frame instead of the recorder's green status card. Original MP4s remain unchanged. Playback is not physical-time evidence.", "tracks": []}
     for mode, label in [("oneshot", "Astra · one-shot"), ("feedback", "Astra · action–observe")]:
         directory = feedback_root / f"rollouts/fresh-open_drawer-{mode}"
         result = source(directory / "result.json", feedback["input_bindings"][str(directory / "result.json")])
@@ -132,9 +152,54 @@ def main():
         drawer["tracks"].append({"label": label, "video": f"media/{destination.name}",
             "success": result["native_success"], "commands": len(result["actions"]),
             "calls": len(result["calls"]), "source_sha256": digest(original), "poster": poster(destination)})
+        if mode == "feedback":
+            drawer["tracks"][-1]["playback_end_seconds"] = scene_end(destination)
     cases.append(drawer)
+    teacher_root = archive / "outputs/professor-meeting-2026-10-08/controller-evaluation-01"
+    teacher_summary = source(teacher_root / "open_drawer-summary.json",
+        "27d43f6a317208544a07f03b4a66a21e706aebab2788aae7dc8ab69a347458ab")
+    teacher_cases = []
+    for case in teacher_summary["cases"]:
+        path = teacher_root / f"open_drawer/seed-{case['seed']}-variant-{case['variation']}/result.json"
+        result = source(path)
+        returned = [row for row in result["actions"] if row["transition_returned"]]
+        native_success = any(row["reward"] > 0 for row in returned)
+        commands = sum(row["execution_started"] for row in result["actions"])
+        if native_success != result["native_success"] or native_success != case["success"] or commands != case["native_actions"]:
+            raise ValueError("Authored-controller outcome disagrees with native transitions")
+        teacher_cases.append(select(result, ["seed", "variation", "native_success"])
+                             | {"commands": commands, "source_sha256": digest(path)})
+    controller_hash = "2959118be4711195042e173e63c9ab450986f5bf3798c345a045fb35573f06b6"
+    if digest(ROOT / "reference/authored_drawer.py") != controller_hash:
+        raise ValueError("Archived controller differs from the recorded controller")
+    if controller_hash not in teacher_summary["input_bindings"].values():
+        raise ValueError("Controller source is not bound to the archived study")
+    teacher_video = teacher_root / "open_drawer/seed-9400-variant-0/rollout.mp4"
+    if digest(teacher_video) != "877015f6777b0a15591b5ca4d132ef706c4e5bcef0c57ffe99675d7d99cae385":
+        raise ValueError("Authored-controller video changed")
+    destination = media / "drawer-authored.mp4"
+    shutil.copyfile(teacher_video, destination)
+    sources.append({"source": teacher_video.relative_to(archive).as_posix(), "sha256": digest(teacher_video)})
+    write("teacher.json", {"status": "preliminary", "task": "RLBench / OpenDrawer",
+        "scope": teacher_summary["scope"], "controller_sha256": controller_hash,
+        "privileged_state": True, "runtime_LLM_calls": 0, "cases": teacher_cases})
+    overview = {"id": "overview", "title": "All four methods", "study": "Recordings from separate experiments",
+        "scope_notice": "Not a matched four-way comparison. These clips use different tasks and seeds. The authored controller reads privileged simulator state; the other methods do not receive those object-state inputs.",
+        "description": "The overview shows what each method executes. Use the paired views to inspect a residual repair, a regression, or the extra calls in the action–observe loop.",
+        "timing": "Model wait is omitted; playback clocks cannot compare physical speed or latency. Shared controls hold the last scene frame, skipping the drawer recorder's green status cards. Original MP4s remain unchanged.",
+        "tracks": [
+            cases[0]["tracks"][0] | {"label": "Zero-shot Astra", "context": "COLOSSEUM V2 · dish placement · seed 514006"},
+            {"label": "Authored controller", "video": "media/drawer-authored.mp4", "poster": poster(destination),
+             "success": teacher_cases[0]["native_success"], "commands": teacher_cases[0]["commands"],
+             "calls": 0, "privileged_state": True, "source_sha256": digest(teacher_video),
+             "playback_end_seconds": scene_end(destination),
+             "context": "RLBench · OpenDrawer · seed 9400 · variation 0"},
+            cases[0]["tracks"][1] | {"label": "Astra + residual RL", "context": "COLOSSEUM V2 · dish placement · seed 514006"},
+            drawer["tracks"][1] | {"label": "Action–observe loop", "context": "RLBench · OpenDrawer · seed 42300"},
+        ]}
+    cases.insert(0, overview)
     write("cases.json", {"cases": cases,
-        "selection": "Post-hoc illustrations, not a representative sample. Dish cases use the first seed with each displayed pattern in the prior 103-scene four-method overlap. Drawer uses the first fresh drawer scene."})
+        "selection": "Post-hoc illustrations, not a representative sample. Dish cases use the first seed with each displayed pattern in the prior 103-scene four-method overlap. The loop uses the first fresh drawer scene. The authored controller uses the first archived seed and variation (9400, 0); the overview mixes studies and is not protocol-matched."})
     contracts = {}
     for label, path in [("v2", base / "astra_controller.py"), ("v1_feedback", feedback_root / "controller.py")]:
         sources.append({"source": path.relative_to(archive).as_posix(), "sha256": digest(path)})

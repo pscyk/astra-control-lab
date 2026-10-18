@@ -6,11 +6,14 @@ Date: 18 October 2026.
 
 | Check | Result |
 |---|---|
-| Standard-library unit tests | 14 pass |
-| Exported JSON and source-video hashes | 15 files pass |
+| Standard-library unit tests | 16 pass |
+| Exported JSON and source-video hashes | 17 files pass |
 | Four recorded policy updates | Match within `1e-12` |
 | Original NumPy/SciPy residual versus port | 495 comparisons; maximum target error `2.22e-16` |
-| Browser playback | Four cases × two viewports pass |
+| Browser playback | Five views × two viewports pass; four panels share one row on desktop |
+| View links | Selection, direct action–observe link, reload, and invalid-view fallback pass |
+| Drawer end frames | Shared controls hold the last scene frame, not the green status card |
+| Authored-controller export | All 15 outcomes agree with returned native rewards; source controller hash matches |
 | Browser runtime errors | None in the smoke test |
 | Mobile horizontal overflow | None at 390 px |
 | New model calls or simulator rollouts | Zero |
@@ -37,7 +40,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory docs
 python3 tests/browser_smoke.py --url http://127.0.0.1:8000
 ```
 
-Use `--chromium PATH` to select an existing browser. The test checks play, pause, seek, reset, case selection, counts, and mobile width. It saves screenshots and a JSON report under the system temporary directory by default. The release check used Chromium 1228 and Playwright 1.64.0 on Linux.
+Use `--chromium PATH` to select an existing browser. The test checks play, pause, seek, reset, case selection, study counts, direct links, and mobile width. It also checks the four-panel desktop layout and samples the held drawer frames to reject a green status card. It saves screenshots and a JSON report under the system temporary directory by default. The release check used Chromium 1228 and Playwright 1.64.0 on Linux.
 
 ## Export and media
 
@@ -48,7 +51,7 @@ python3 scripts/export_evidence.py PATH_TO_ORIGINAL_RESEARCH_ARCHIVE
 bash scripts/make_teaser.sh
 ```
 
-Both commands need FFmpeg. The exporter checks fixed hashes for the primary records. It copies the eight original MP4 recordings without re-encoding. It extracts the first frame for each poster. The GIF uses eight frames per second and holds the shorter clip's last frame. It is a selected example, not a new rollout.
+Both commands need FFmpeg. The exporter checks fixed hashes for the primary records, copies nine original MP4 recordings without re-encoding, and extracts the first frame for each poster. It verifies the ten trailing green status frames in the successful drawer clips before assigning a scene-end time for shared playback. Native video controls still show the complete source recording. The GIF uses eight frames per second and holds the shorter clip's last frame; it remains a selected dish pair, not a four-way trial or a new rollout.
 
 The manifest covers JSON evidence and original MP4 recordings. Display-only posters, the GIF, and the browser screenshot are derived previews, not primary evidence.
 

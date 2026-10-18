@@ -3,7 +3,7 @@
   "files": [
     {
       "path": "data/cases.json",
-      "sha256": "c3b3c782caa0056e496c1481f31f5f8384b3497223b50e751031d02f49696474"
+      "sha256": "c323d597bfd89ee6e7f6dfc0c783c30012fd2a7ace7580fb4c927ed3f3cf1461"
     },
     {
       "path": "data/contracts.json",
@@ -15,11 +15,15 @@
     },
     {
       "path": "data/provenance.json",
-      "sha256": "ae77a654a4eaab32bdf769356787a015e91db78a115053051bad0f181908757e"
+      "sha256": "20cb113909f36acce789e337a161398515b970cde58419ae572e9f36d00b3342"
     },
     {
       "path": "data/study.json",
       "sha256": "280fdbeacfa6eff9534a20b664dfde0a9caf9f3eb967e14f4ac5a4b142a4aec7"
+    },
+    {
+      "path": "data/teacher.json",
+      "sha256": "9667cbb305340d7f9809cd57a9c916d62783bdfbf0e928226e499b36f467171b"
     },
     {
       "path": "data/training.json",
@@ -52,6 +56,10 @@
     {
       "path": "media/514024-zero.mp4",
       "sha256": "17728f7c376262fa147be8007345e3b530b9b6ca8f3ae3335337c5ee3e711cbb"
+    },
+    {
+      "path": "media/drawer-authored.mp4",
+      "sha256": "877015f6777b0a15591b5ca4d132ef706c4e5bcef0c57ffe99675d7d99cae385"
     },
     {
       "path": "media/drawer-feedback.mp4",

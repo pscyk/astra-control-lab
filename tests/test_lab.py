@@ -1,4 +1,5 @@
 from copy import deepcopy
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -38,7 +39,39 @@ class EvidenceTests(unittest.TestCase):
                 evidence.wilson(successes, trials)
 
     def test_manifest(self):
-        self.assertEqual(evidence.verify(), 15)
+        self.assertEqual(evidence.verify(), 17)
+
+    def test_four_method_overview(self):
+        gallery = json.loads((evidence.DATA / "cases.json").read_text())
+        self.assertEqual(len(gallery["cases"]), 5)
+        overview = gallery["cases"][0]
+        self.assertEqual(overview["id"], "overview")
+        self.assertEqual(len(overview["tracks"]), 4)
+        self.assertIn("Not a matched four-way comparison", overview["scope_notice"])
+        self.assertNotIn("seed", overview)
+        self.assertTrue(overview["tracks"][1]["privileged_state"])
+        self.assertAlmostEqual(overview["tracks"][1]["playback_end_seconds"], 113 / 30)
+        self.assertAlmostEqual(overview["tracks"][3]["playback_end_seconds"], 180 / 30)
+        self.assertEqual(overview["tracks"][0]["video"], gallery["cases"][1]["tracks"][0]["video"])
+        self.assertEqual(overview["tracks"][2]["video"], gallery["cases"][1]["tracks"][1]["video"])
+        self.assertEqual(overview["tracks"][3]["video"], gallery["cases"][-1]["tracks"][1]["video"])
+        for case in gallery["cases"]:
+            for track in case["tracks"]:
+                video = evidence.ROOT / "docs" / track["video"]
+                self.assertEqual(hashlib.sha256(video.read_bytes()).hexdigest(), track["source_sha256"])
+                self.assertTrue((evidence.ROOT / "docs" / track["poster"]).is_file())
+
+    def test_authored_controller_records(self):
+        teacher = json.loads((evidence.DATA / "teacher.json").read_text())
+        self.assertTrue(teacher["privileged_state"])
+        self.assertEqual(teacher["runtime_LLM_calls"], 0)
+        self.assertEqual(len(teacher["cases"]), 15)
+        self.assertEqual({(row["seed"], row["variation"]) for row in teacher["cases"]},
+                         {(seed, variation) for seed in range(9400, 9405) for variation in range(3)})
+        self.assertTrue(all(row["native_success"] for row in teacher["cases"]))
+        self.assertEqual(sum(row["commands"] for row in teacher["cases"]), 120)
+        controller = evidence.ROOT / "reference/authored_drawer.py"
+        self.assertEqual(hashlib.sha256(controller.read_bytes()).hexdigest(), teacher["controller_sha256"])
 
     def test_bad_study_rejected(self):
         data = evidence.load()

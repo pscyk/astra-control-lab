@@ -106,6 +106,74 @@
       "sha256": "3ec3df5a6fe599f60726b10d33e518b34f8c05a06f362f950211cb880eec11b2"
     },
     {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer-summary.json",
+      "sha256": "27d43f6a317208544a07f03b4a66a21e706aebab2788aae7dc8ab69a347458ab"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9400-variant-0/result.json",
+      "sha256": "8dde4661f052b044baaeb3b1b497e3a9a8c15511b5fa8153121ab3a75be554bf"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9400-variant-1/result.json",
+      "sha256": "c6e347011447c94c3c62d7cbcdfbb2f7f0a5103b3445db0ed35de359eedb81ef"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9400-variant-2/result.json",
+      "sha256": "6c409733f453a1264ba7439c4cc47670d99c6706bd3fc4fd5ae46f2afb0742d9"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9401-variant-0/result.json",
+      "sha256": "0ba9704d86e33edabb8099ce6ffb91f41a376e0e3d43dc710051cb88ae581cba"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9401-variant-1/result.json",
+      "sha256": "90095be9b2b43c7e29c28f1371f979029db60f49d5c07bb2f36ebf8d680a6368"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9401-variant-2/result.json",
+      "sha256": "74be13acdcab4b9cbfb437166880d03e3d1152b78da58eba19151e13d0141248"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9402-variant-0/result.json",
+      "sha256": "cf257a21bb4ae1a6dd2d0eb74ec324909f4ae6c2040d4d8d6c7689f5b24c8372"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9402-variant-1/result.json",
+      "sha256": "e3ceb2dc7e72a31ec4d8e28eece23b56dddd7536b6fc7154922d8c27eaf87a2c"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9402-variant-2/result.json",
+      "sha256": "655645d11373d21e8007d7fd2925dfdd45f4aeb86d9961c0c8db69c2502a484b"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9403-variant-0/result.json",
+      "sha256": "ac799c3d30f087887313eb2694037ff010b22611495cb93f3ef96349060df2d6"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9403-variant-1/result.json",
+      "sha256": "5c49c4b7274c88fd578e2830c2c77bb8bad85628d340d7061f1d6b07bd0bb209"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9403-variant-2/result.json",
+      "sha256": "d343609ebb5a77209038e06b7e1b52c97f20f4344695bde4ff8ab6e5a1317ae3"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9404-variant-0/result.json",
+      "sha256": "2c293c817f5c010d0358db45d58837e212d6d9957f0b7c88f65ea52eadb51092"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9404-variant-1/result.json",
+      "sha256": "e0843bc8d269f607c6b91c175d56704fbb78ed55a45dc9e90f2f41ba3f2215cf"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9404-variant-2/result.json",
+      "sha256": "c99143370ae046312571999f0edc461a01d9610566024bedc635779f83b6630c"
+    },
+    {
+      "source": "outputs/professor-meeting-2026-10-08/controller-evaluation-01/open_drawer/seed-9400-variant-0/rollout.mp4",
+      "sha256": "877015f6777b0a15591b5ca4d132ef706c4e5bcef0c57ffe99675d7d99cae385"
+    },
+    {
       "source": "work/benchmark-audit/colosseum-v2-evaluation-01-2026-10-09/astra_controller.py",
       "sha256": "54e63890225914ff8168f4cf1cfa0b23297701b982a36a259a72788dd7819342"
     },

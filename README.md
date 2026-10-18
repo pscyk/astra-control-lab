@@ -4,11 +4,13 @@ Robot manipulation experiments with Astra-generated action trajectories in COLOS
 
 You can inspect recorded rollouts, recompute the results, and replay the residual-policy updates with Python's standard library. Running new robot episodes requires the original simulator setup and model access; neither is included here.
 
-[Interactive demo](https://pscyk.github.io/astra-control-lab/) · [Research findings](RESEARCH.md) · [Outcome records](docs/data/study.json)
+[Four-method view](https://pscyk.github.io/astra-control-lab/?view=overview#replay) · [Action–observe demo](https://pscyk.github.io/astra-control-lab/?view=drawer#replay) · [Research findings](RESEARCH.md)
 
 [![Recorded dish-placement scene: Astra without correction and Astra with a learned residual](docs/media/teaser.gif)](https://pscyk.github.io/astra-control-lab/)
 
 The clip shows seed `514006`, where the residual succeeds and the base trajectory fails. It omits model wait and holds the shorter recording's final frame. The demo also includes a regression, a missed grasp, and a drawer recovery using new observations. These are selected examples, not a random sample.
+
+The page opens with all four methods side by side on desktop. Those recordings use different tasks and seeds; they are not a matched four-way comparison. The paired views retain the within-study comparisons, and the results section keeps each study separate.
 
 ## Run locally
 
@@ -32,14 +34,16 @@ To serve the demo locally:
 python3 -m http.server 8000 --bind 127.0.0.1 --directory docs
 ```
 
-Open `http://127.0.0.1:8000`. The shared controls play or seek both recordings; each video also has independent controls. Dish videos retain their 20 Hz recording rate. Drawer playback does not represent physical execution speed, and neither study's videos include model wait.
+Open `http://127.0.0.1:8000`. The shared controls play or seek all displayed recordings; each video also has independent controls. Dish videos retain their 20 Hz recording rate. Drawer playback does not represent physical execution speed, and neither study's videos include model wait.
+
+The drawer recorder appends ten green status frames after success. Shared playback holds the preceding scene frame instead; the original MP4s and their native video controls retain those status frames.
 
 ## Methods
 
 | Method | Model use | Training or feedback | Included here |
 |---|---|---|---|
 | Zero-shot trajectory | Astra reads observations and returns actions | No task demonstrations in the prompt or base-model weight updates | Recorded actions, input contracts, results, and videos |
-| Astra-authored controller | Astra writes Python before execution | The drawer controller reads private simulator state | Original training-only controller |
+| Astra-authored controller | Astra writes Python before execution | The drawer controller reads private simulator state | Original training-only controller, 15 outcome records, and a drawer video |
 | Astra + residual RL | Astra supplies the base trajectory | Train three bounded corrections, then freeze them for evaluation | Residual code, policy update, and all four training batches |
 | Action–observe loop | Astra receives new observations after short execution phases | Revise actions without changing model weights | Phase rules, feedback contract, results, and drawer videos |
 
@@ -80,6 +84,12 @@ The frozen policy adds about `0.209 rad` of roll, `7.52 mm` in Y, and `48.74 mm`
 Training rewards use simulator object state. Evaluation receives no such diagnostics, and Astra's weights remain unchanged throughout. There is no behavior-cloned student or online weight update during evaluation.
 
 A placement correction cannot recover an object that the robot never grasped. The saved runs also show that applying the same correction can spoil a successful base trajectory. [RESEARCH.md](RESEARCH.md) examines both failures and proposes tests for selective correction.
+
+## Authored-controller results
+
+Status: preliminary. The archived OpenDrawer evaluation records 15 native successes in 15 scenes: seeds `9400` through `9404`, each with three variations. It uses 120 native commands and no runtime LLM calls. The exporter checks each recorded outcome against returned native rewards and binds the controller source by SHA-256.
+
+The controller reads private simulator state. Its 15/15 result therefore does not rank it against the observation-based methods. [Controller records](docs/data/teacher.json) retain each seed, variation, command count, and source hash.
 
 ## Action–observe results
 

@@ -1,24 +1,32 @@
 const element = id => document.getElementById(id);
-const videos = [element("left"), element("right")];
+let videos = [];
 let playing = false;
 let animation = null;
 let playbackStart = 0;
 let selectionVersion = 0;
 
+function playLabel() {
+  return `${playing ? "Pause" : "Play"} ${videos.length === 4 ? "all four" : "both"}`;
+}
+
 function pause() {
   playing = false;
   cancelAnimationFrame(animation);
   videos.forEach(video => video.pause());
-  element("play").textContent = "Play both";
+  element("play").textContent = playLabel();
+}
+
+function endTime(video) {
+  return Number.isFinite(video.duration) ? Math.min(Number(video.dataset.playbackEnd) || video.duration, video.duration) : 0;
 }
 
 function maximumTime() {
-  return Math.max(...videos.map(video => Number.isFinite(video.duration) ? video.duration : 0));
+  return Math.max(...videos.map(endTime));
 }
 
 function seek(seconds) {
   videos.forEach(video => {
-    if (Number.isFinite(video.duration)) video.currentTime = Math.min(seconds, Math.max(0, video.duration - 0.001));
+    if (Number.isFinite(video.duration)) video.currentTime = Math.min(seconds, Math.max(0, endTime(video) - 0.001));
   });
   element("timeline").value = seconds;
   element("clock").textContent = `${seconds.toFixed(1)} s`;
@@ -30,7 +38,11 @@ function tick() {
   element("timeline").value = seconds;
   element("clock").textContent = `${seconds.toFixed(1)} s`;
   videos.forEach(video => {
-    if (seconds >= video.duration) video.pause();
+    if (seconds >= endTime(video)) {
+      video.pause();
+      const lastFrame = Math.max(0, endTime(video) - 0.001);
+      if (Math.abs(video.currentTime - lastFrame) > 0.002) video.currentTime = lastFrame;
+    }
     else if (Math.abs(video.currentTime - seconds) > 0.3) video.currentTime = seconds;
   });
   if (seconds >= maximumTime()) pause();
@@ -38,7 +50,7 @@ function tick() {
 }
 
 function ready() {
-  const loaded = videos.every(video => video.readyState >= 2 && Number.isFinite(video.duration));
+  const loaded = videos.length > 0 && videos.every(video => video.readyState >= 2 && Number.isFinite(video.duration));
   ["play", "reset", "timeline"].forEach(id => element(id).disabled = !loaded);
   if (loaded) element("timeline").max = maximumTime();
 }
@@ -46,25 +58,54 @@ function ready() {
 function showCase(record) {
   pause();
   selectionVersion += 1;
+  const version = selectionVersion;
   element("load-status").textContent = "";
   element("case-title").textContent = record.title;
-  element("case-meta").textContent = `${record.study} / seed ${record.seed}`;
+  element("case-meta").textContent = record.study + (record.seed === undefined ? "" : ` / seed ${record.seed}`);
   element("case-description").textContent = record.description;
   element("timing").textContent = record.timing;
+  element("comparison-scope").textContent = record.scope_notice || "";
+  element("comparison-scope").hidden = !record.scope_notice;
+  const url = new URL(window.location.href);
+  url.searchParams.set("view", record.id);
+  history.replaceState(null, "", url);
+  url.hash = "replay";
+  element("case-link").href = url;
   document.querySelectorAll(".case-buttons button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.case === record.id)));
   ["play", "reset", "timeline"].forEach(id => element(id).disabled = true);
-  record.tracks.forEach((track, index) => {
-    const side = index === 0 ? "left" : "right";
-    element(`label-${side}`).textContent = track.label;
-    element(`result-${side}`).textContent = track.success ? "NATIVE SUCCESS" : "NO SUCCESS";
-    element(`result-${side}`).className = `outcome${track.success ? " success" : ""}`;
-    element(`detail-${side}`).textContent = track.steps
+  element("players").replaceChildren();
+  element("players").classList.toggle("four-up", record.tracks.length === 4);
+  videos = record.tracks.map(track => {
+    const figure = element("track-template").content.firstElementChild.cloneNode(true);
+    figure.querySelector(".track-label").textContent = track.label;
+    const outcome = figure.querySelector(".outcome");
+    outcome.textContent = track.success ? "NATIVE SUCCESS" : "NO SUCCESS";
+    outcome.classList.toggle("success", track.success);
+    figure.querySelector(".video-detail").textContent = track.steps
       ? `${track.steps} native steps · model wait omitted`
+      : track.privileged_state
+      ? `${track.commands} commands · no runtime LLM calls · privileged state`
       : `${track.commands} commands · ${track.calls} total Astra calls (initial call shared)`;
-    videos[index].src = track.video;
-    videos[index].poster = track.poster;
-    videos[index].load();
+    const context = figure.querySelector(".track-context");
+    context.textContent = track.context || "";
+    context.hidden = !track.context;
+    const video = figure.querySelector("video");
+    video.setAttribute("aria-label", `${track.label} recording`);
+    video.src = track.video;
+    video.poster = track.poster;
+    if (track.playback_end_seconds) video.dataset.playbackEnd = track.playback_end_seconds;
+    video.addEventListener("loadeddata", ready);
+    video.addEventListener("canplay", ready);
+    video.addEventListener("error", () => {
+      if (version !== selectionVersion) return;
+      pause();
+      element("load-status").textContent = "A recording could not load. Reload the page or open the MP4 from the repository.";
+    });
+    element("players").append(figure);
+    return video;
   });
+  videos.forEach(video => video.load());
+  element("play").textContent = playLabel();
   element("timeline").value = 0;
   element("clock").textContent = "0.0 s";
 }
@@ -75,9 +116,9 @@ element("play").addEventListener("click", async () => {
   const version = selectionVersion;
   playbackStart = performance.now() - Number(element("timeline").value) * 1000;
   playing = true;
-  element("play").textContent = "Pause both";
+  element("play").textContent = playLabel();
   try {
-    await Promise.all(videos.filter(video => Number(element("timeline").value) < video.duration).map(video => video.play()));
+    await Promise.all(videos.filter(video => Number(element("timeline").value) < endTime(video)).map(video => video.play()));
     if (version === selectionVersion && playing) tick();
   } catch (error) {
     if (version !== selectionVersion) return;
@@ -87,14 +128,6 @@ element("play").addEventListener("click", async () => {
 });
 element("reset").addEventListener("click", () => { pause(); seek(0); });
 element("timeline").addEventListener("input", event => { pause(); seek(Number(event.target.value)); });
-videos.forEach(video => {
-  video.addEventListener("loadeddata", ready);
-  video.addEventListener("canplay", ready);
-  video.addEventListener("error", () => {
-    pause();
-    element("load-status").textContent = "A recording could not load. Reload the page or open the MP4 from the repository.";
-  });
-});
 
 function wilson(successes, total) {
   const critical = 1.959963984540054;
@@ -138,14 +171,27 @@ function scores(study) {
   element("regressions").textContent = regressed;
 }
 
+function separateScores(teacher, feedback) {
+  element("teacher-score").textContent = `${teacher.cases.filter(row => row.native_success).length}/${teacher.cases.length}`;
+  for (const [id, cohort, mode] of [
+    ["loop-score", "fresh_development", "feedback"],
+    ["loop-base-score", "fresh_development", "oneshot"],
+    ["known-loop-score", "known_failure_diagnostic", "feedback"],
+  ]) {
+    const rows = feedback.rows.filter(row => row.cohort === cohort && row.mode === mode);
+    element(id).textContent = `${rows.filter(row => row.success).length}/${rows.length}`;
+  }
+}
+
 async function initialize() {
   try {
-    const [gallery, study] = await Promise.all(["cases", "study"].map(async name => {
+    const [gallery, study, teacher, feedback] = await Promise.all(["cases", "study", "teacher", "feedback"].map(async name => {
       const response = await fetch(`data/${name}.json`);
       if (!response.ok) throw new Error(`Cannot load ${name}`);
       return response.json();
     }));
     scores(study);
+    separateScores(teacher, feedback);
     gallery.cases.forEach((record, index) => {
       const button = document.createElement("button");
       button.textContent = `${String(index + 1).padStart(2, "0")} / ${record.title}`;
@@ -154,7 +200,8 @@ async function initialize() {
       button.addEventListener("click", () => showCase(record));
       element("case-buttons").append(button);
     });
-    showCase(gallery.cases[0]);
+    const requested = new URLSearchParams(window.location.search).get("view");
+    showCase(gallery.cases.find(record => record.id === requested) || gallery.cases[0]);
   } catch (error) {
     element("load-status").textContent = `Evidence did not load: ${error.message}. Serve this folder over HTTP, not file://.`;
   }
