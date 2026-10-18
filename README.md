@@ -10,6 +10,8 @@ You can inspect recorded rollouts, recompute the results, and replay the residua
 
 The clip shows seed `514006`, where the residual succeeds and the base trajectory fails. It omits model wait and holds the shorter recording's final frame. The demo also includes a regression, a missed grasp, and a drawer recovery using new observations. These are selected examples, not a random sample.
 
+Use **Choose a task** to switch between dish placement and opening a drawer, then select a recording and press **Play**. A view link restores both the task and recording.
+
 The page opens with four dish runs from seed `514006`: zero-shot, action–observe, random-search residual, and RL residual. The exporter verifies their shared initial simulator state, camera images, robot state, calibration, and Astra proposal. The feedback run makes four extra calls and was recorded later. This is the previously displayed scene, not a new selection based on the feedback result. The authored drawer controller has a separate recording view.
 
 ## Run locally

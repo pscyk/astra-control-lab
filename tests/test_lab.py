@@ -41,6 +41,18 @@ class EvidenceTests(unittest.TestCase):
     def test_manifest(self):
         self.assertEqual(evidence.verify(), 20)
 
+    def test_recordings_grouped_by_task(self):
+        gallery = json.loads((evidence.DATA / "cases.json").read_text())
+        self.assertEqual(gallery["tasks"], [
+            {"id": "PlaceDishInRack-v1", "label": "Dish placement"},
+            {"id": "OpenDrawer", "label": "Open drawer"}])
+        expected = {"PlaceDishInRack-v1": ["overview", "514006", "514024", "514019"],
+                    "OpenDrawer": ["drawer", "authored"]}
+        self.assertEqual({case["task"] for case in gallery["cases"]}, set(expected))
+        for task, case_ids in expected.items():
+            self.assertEqual([case["id"] for case in gallery["cases"] if case["task"] == task], case_ids)
+            self.assertTrue(all(task in case["study"] for case in gallery["cases"] if case["task"] == task))
+
     def test_four_method_overview(self):
         gallery = json.loads((evidence.DATA / "cases.json").read_text())
         self.assertEqual(len(gallery["cases"]), 6)

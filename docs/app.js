@@ -55,6 +55,21 @@ function ready() {
   if (loaded) element("timeline").max = maximumTime();
 }
 
+function showTask(task, cases, selected) {
+  element("task-select").value = task;
+  element("case-buttons").replaceChildren();
+  const recordings = cases.filter(record => record.task === task);
+  recordings.forEach((record, index) => {
+    const button = document.createElement("button");
+    button.textContent = `${String(index + 1).padStart(2, "0")} / ${record.title}`;
+    button.dataset.case = record.id;
+    button.setAttribute("aria-pressed", "false");
+    button.addEventListener("click", () => showCase(record));
+    element("case-buttons").append(button);
+  });
+  showCase(selected || recordings[0]);
+}
+
 function showCase(record) {
   pause();
   selectionVersion += 1;
@@ -183,7 +198,6 @@ function separateScores(teacher, feedback) {
     const rows = feedback.rows.filter(row => row.cohort === cohort && row.mode === mode);
     element(id).textContent = `${rows.filter(row => row.success).length}/${rows.length}`;
   }
-  element("loop-summary").textContent = element("loop-score").textContent;
 }
 
 function dishLoopScore(followup) {
@@ -227,23 +241,19 @@ function dishLoopScore(followup) {
 async function initialize() {
   try {
     const [gallery, study, teacher, feedback, followup] = await Promise.all(["cases", "study", "teacher", "feedback", "dish_loop"].map(async name => {
-      const response = await fetch(`data/${name}.json?v=5`);
+      const response = await fetch(`data/${name}.json?v=6`);
       if (!response.ok) throw new Error(`Cannot load ${name}`);
       return response.json();
     }));
     scores(study);
     separateScores(teacher, feedback);
     dishLoopScore(followup);
-    gallery.cases.forEach((record, index) => {
-      const button = document.createElement("button");
-      button.textContent = `${String(index + 1).padStart(2, "0")} / ${record.title}`;
-      button.dataset.case = record.id;
-      button.setAttribute("aria-pressed", "false");
-      button.addEventListener("click", () => showCase(record));
-      element("case-buttons").append(button);
-    });
+    element("task-select").replaceChildren(...gallery.tasks.map(task => new Option(task.label, task.id)));
+    element("task-select").addEventListener("change", event => showTask(event.target.value, gallery.cases));
     const requested = new URLSearchParams(window.location.search).get("view");
-    showCase(gallery.cases.find(record => record.id === requested) || gallery.cases[0]);
+    const selected = gallery.cases.find(record => record.id === requested) || gallery.cases[0];
+    showTask(selected.task, gallery.cases, selected);
+    element("task-select").disabled = false;
   } catch (error) {
     element("load-status").textContent = `Evidence did not load: ${error.message}. Serve this folder over HTTP, not file://.`;
   }

@@ -6,12 +6,13 @@ Date: 19 October 2026.
 
 | Check | Result |
 |---|---|
-| Standard-library unit tests | 31 pass |
+| Standard-library unit tests | 32 pass |
 | Exported JSON and source-video hashes | 20 files pass |
 | Four recorded policy updates | Match within `1e-12` |
 | Original NumPy/SciPy residual versus port | 495 comparisons; maximum target error `2.22e-16` |
 | Browser playback | Six views × two viewports pass; four same-scene dish panels share one row on desktop |
 | View links | Selection, drawer and authored-controller links, reload, and invalid-view fallback pass |
+| Task selector | Dish and drawer options filter recordings; keyboard selection works; task changes stop playback and reset the clock |
 | Dish overview bindings | All four recordings use seed 514006, identical initial state and camera images, and the same initial proposal |
 | Dish chart coverage | Action–observe row shows run status until its full audit completes; incomplete runs have no percentage bar |
 | Drawer end frames | Shared controls hold the last scene frame, not the green status card |

@@ -18,8 +18,8 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 ::selection { background: rgba(57, 255, 20, .30); color: var(--ink); }
 a { color: var(--accent); text-decoration-color: var(--line-strong); text-underline-offset: 4px; }
 a:hover { color: var(--ink); text-decoration-color: currentColor; }
-button, input { font: inherit; }
-button, a, input { touch-action: manipulation; }
+button, input, select { font: inherit; }
+button, a, input, select { touch-action: manipulation; }
 button { cursor: pointer; }
 button:disabled { cursor: wait; opacity: .55; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
@@ -54,6 +54,10 @@ nav a:hover { color: var(--accent); }
 .section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
 .section-heading h2 { margin-bottom: 20px; }
 .tag { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.task-picker { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px; margin-bottom: 16px; font-size: 12px; }
+.task-picker label { color: var(--muted); }
+.task-picker select { min-height: 44px; width: 240px; max-width: 100%; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 0; background: var(--background); color: var(--ink); }
+.task-picker select:disabled { opacity: .55; }
 .case-buttons { display: flex; gap: 0; border: 1px solid var(--line-strong); margin: 8px 0 24px; }
 .case-buttons button { flex: 1; min-width: 0; min-height: 48px; padding: 10px 12px; border: 0; border-right: 1px solid var(--line-strong); background: var(--surface); color: var(--muted); font-size: 12px; line-height: 1.6; text-align: left; }
 .case-buttons button:last-child { border-right: 0; }
@@ -95,7 +99,6 @@ nav a:hover { color: var(--accent); }
 .score-track { height: 6px; background: var(--line); }
 .score-fill { height: 100%; background: var(--accent); }
 .score-meta { color: var(--muted); font-size: 11px; line-height: 1.7; margin: 8px 0 0; }
-#dish-loop-result a { font-size: 12px; }
 .score-unmeasured { padding: 16px 0; border-block: 1px dashed var(--line-strong); }
 .score-unmeasured .score-top { align-items: center; }
 .score-unmeasured .score-top strong { max-width: 40%; flex-shrink: 1; font-size: 12px; text-align: right; }
@@ -161,6 +164,7 @@ footer a { text-decoration: none; }
   .replay-section, .methods, .evidence-section { padding-block: 28px 32px; }
   .section-heading { gap: 12px; flex-wrap: wrap; }
   .section-heading .tag { margin-bottom: 14px; }
+  .task-picker select { width: 100%; }
   .case-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .case-buttons button { padding: 12px; border-right: 0; border-bottom: 1px solid var(--line-strong); font-size: 12px; }
   .case-buttons button:nth-child(odd) { border-right: 1px solid var(--line-strong); }

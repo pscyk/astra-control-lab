@@ -122,7 +122,7 @@ def main():
     ]
     for seed, title, description in descriptions:
         case = {"id": str(seed), "title": title, "description": description, "seed": seed,
-                "study": "COLOSSEUM V2 / PlaceDishInRack-v1", "tracks": [],
+                "study": "COLOSSEUM V2 / PlaceDishInRack-v1", "task": "PlaceDishInRack-v1", "tracks": [],
                 "timing": "20 Hz simulation video. Model wait is omitted. The shorter clip holds its last frame."}
         for mode, label in [("zero", "Astra · zero-shot"), ("astra_RL", "Astra + residual")]:
             record = next(row for row in preview["source_media"] if row["seed"] == seed and row["mode"] == mode)
@@ -140,7 +140,7 @@ def main():
                 write("trajectory.json", {"seed": seed, "frame": "world", "quaternion_order": "xyzw",
                     "commands": result["proposal_commands"], "source_sha256": record["result"]["sha256"]})
         cases.append(case)
-    drawer = {"id": "drawer", "title": "Action–observe loop", "seed": 42300,
+    drawer = {"id": "drawer", "title": "Action–observe loop", "seed": 42300, "task": "OpenDrawer",
         "study": "RLBench / OpenDrawer / fresh development scene",
         "description": "The feedback run opens the drawer after eight extra Astra calls. Both runs reuse the initial proposal; neither updates model weights.",
         "scope_notice": "This pair shares the initial proposal, but the first returned drawer observation was not bitwise identical. The feedback run also changes the prompt and depth feedback.",
@@ -186,7 +186,7 @@ def main():
     write("teacher.json", {"status": "preliminary", "task": "RLBench / OpenDrawer",
         "scope": teacher_summary["scope"], "controller_sha256": controller_hash,
         "privileged_state": True, "runtime_LLM_calls": 0, "cases": teacher_cases})
-    cases.append({"id": "authored", "title": "Authored controller", "seed": 9400,
+    cases.append({"id": "authored", "title": "Authored controller", "seed": 9400, "task": "OpenDrawer",
         "study": "RLBench / OpenDrawer / variation 0",
         "description": "Astra wrote this controller before execution. It reads simulator object state and makes no runtime model calls.",
         "timing": "The controls hold the last scene frame. The original MP4 retains its trailing status frames; playback does not measure physical execution time.",
@@ -209,7 +209,7 @@ def main():
     with reference.with_name("offline-privileged.jsonl").open() as stream:
         initial_state = json.loads(stream.readline())["state"]
     overview = {"id": "overview", "title": "Dish comparison", "seed": seed,
-        "study": "COLOSSEUM V2 / PlaceDishInRack-v1", "condition": "NONE",
+        "study": "COLOSSEUM V2 / PlaceDishInRack-v1", "task": "PlaceDishInRack-v1", "condition": "NONE",
         "description": "Same scene, initial observations, and Astra proposal; each attempt allows 327 native steps. Only the RL residual completes this selected scene. The action–observe run makes four feedback calls.",
         "timing": "20 Hz simulation video; model wait is omitted. Shorter clips hold their last frame. The feedback run was recorded later; the logs do not establish a fixed model checkpoint across dates.",
         "tracks": []}
@@ -246,7 +246,8 @@ def main():
             "reference_sha256": proposal["sha256"], "initial_state_verified": True, "privileged_state": False,
             "context": f"PlaceDishInRack-v1 · seed {seed}"})
     cases.insert(0, overview)
-    write("cases.json", {"cases": cases,
+    write("cases.json", {"tasks": [{"id": "PlaceDishInRack-v1", "label": "Dish placement"},
+                                  {"id": "OpenDrawer", "label": "Open drawer"}], "cases": cases,
         "selection": "Post-hoc illustrations, not a representative sample. The overview retains the previously displayed dish scene 514006 and adds its random-search and action-observe recordings without choosing a new seed. Dish pairs use the first seed for each displayed pattern in the prior 103-scene overlap. The drawer pair uses the first fresh drawer scene. The separate authored-controller view uses the first archived seed and variation (9400, 0)."})
     contracts = {}
     for label, path in [("v2", base / "astra_controller.py"), ("v1_feedback", feedback_root / "controller.py")]:

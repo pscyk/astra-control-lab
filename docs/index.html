@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#06070a">
   <title>Astra Control Lab | Robot control experiments</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=5">
-  <script src="app.js?v=5" defer></script>
+  <link rel="stylesheet" href="style.css?v=6">
+  <script src="app.js?v=6" defer></script>
 </head>
 <body>
 <a class="skip" href="#replay">Skip to replay</a>
@@ -44,6 +44,7 @@
   </section>
   <section id="replay" class="replay-section wrap">
     <div class="section-heading"><div><p class="eyebrow">~/recordings</p><h2>Recorded runs</h2></div></div>
+    <div class="task-picker"><label for="task-select">Choose a task</label><select id="task-select" aria-controls="case-buttons players" disabled><option>Loading tasks…</option></select></div>
     <div id="case-buttons" class="case-buttons" role="group" aria-label="Select a recorded case"></div>
     <p id="load-status" role="status">Loading recordings and results.</p>
     <noscript>Enable JavaScript for playback. The repository also contains the JSON results and MP4 recordings.</noscript>
@@ -65,7 +66,6 @@
             <div class="score-top"><span>Astra · action–observe loop</span><strong id="dish-loop-score">Preparing</strong></div>
             <div id="dish-loop-bar"></div>
             <p id="dish-loop-status" class="score-meta">Loading the follow-up run record.</p>
-            <a href="data/dish_loop.json">Run record ↗</a> · <a href="https://github.com/pscyk/astra-control-lab/blob/main/DISH_LOOP.md#capacity-recovery-amendment">Retry protocol ↗</a> · <a href="#loop-study">Earlier RLBench study: <span id="loop-summary">—</span> fresh scenes ↗</a>
           </div>
         </div>
         <p class="fine">Success requires completion within the model and execution budgets. The 95% Wilson intervals measure variation across scenes; they do not cover training variability. The residual uses one training seed.</p></div>
