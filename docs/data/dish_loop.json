@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "status": "preliminary",
-  "phase": "running",
+  "phase": "stopped",
   "task": "PlaceDishInRack-v1",
-  "updated_unix": 1792351092.0922482,
+  "updated_unix": 1792357410.4700286,
   "started_unix": 1792347527.27801,
   "protocol_sha256": "40e7e153c08b1573ed06dbefa0b97cd8902bfd8b8bd7e6f50cbc98f0926b0508",
   "review_interval_steps": 64,
@@ -11,9 +11,9 @@
   "total_model_wait_budget_seconds": 720,
   "summary": {
     "planned": 200,
-    "accounted": 83,
-    "native_completed": 48,
-    "successes": 9,
+    "accounted": 168,
+    "native_completed": 133,
+    "successes": 24,
     "budgeted_rate": null
   },
   "outcomes": [
@@ -451,43 +451,43 @@
     },
     {
       "seed": 514055,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "14e0d22896867cb01bc3666e4cf74aedc78080954a8d4d6d2195994b0f38d4f1",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514056,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "fa98123a32decf023d99402ef59216f5b234fd10f2a41e8cdb6b8cea3c8523df",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514057,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "963c51025c509fe224b4f54f4b40a1c700663e5b507f7b6a284f12bdd81d7c86",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514058,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "72957822fb699e00ad4a7e6b5eddaf40858585535018713c3d1c53757e0cc10b",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514059,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "1b32bb0f86ad1d61f9c32bd0c3d508aab00180f3b2418512ef1d8d6c36e42ae1",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514060,
@@ -499,19 +499,19 @@
     },
     {
       "seed": 514061,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "e631bf69895ee5dc6bb0d27adf86aed108629add4474c06f8a380b34764da6d8",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514062,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "6f38b5a75d8ff0e8fa6209dd528fd1fe029266640053b910d758f4cf0815b4de",
+      "new_LLM_calls": 4,
+      "control_steps": 262
     },
     {
       "seed": 514063,
@@ -523,51 +523,51 @@
     },
     {
       "seed": 514064,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "54ecf96a03447de68e9c734e34b2fd5811671772997f1082d6edff0063b8b4ec",
+      "new_LLM_calls": 3,
+      "control_steps": 215
     },
     {
       "seed": 514065,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "2235c96d7bda993966d01db7fa04162cc61dadd531ed133334ad3b2c1a8f1bd2",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514066,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "ca54aaa52d483e9008d6e3241a0106641d6129d9968861327990b163b83b43f1",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514067,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "de2fb833d5c3637f6d29157f7d5b540a5de0f870cf997512d0c4b07fd9e25d49",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514068,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "a899b335ccfe7a4397b8f1bacdc6e9657016d74e66f2e1deecef91c3681094c1",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514069,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "64115343f2f57d04dcf2a0923504af9b04d7a7f84889f7308b717eb7123bec45",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514070,
@@ -579,59 +579,59 @@
     },
     {
       "seed": 514071,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "31e199d6a4c8e1b3ea91bd37d3ac8662acea035da08d452d41dcf09551313e38",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514072,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "7a8aa1569c455b46d912a5e8339c79ca4b72c1b7f8c16453ba8072716de82af2",
+      "new_LLM_calls": 4,
+      "control_steps": 289
     },
     {
       "seed": 514073,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "61bc53662592db69c6a716d1e021ca74cdb48c04b780d104bd11a31c3f5c4636",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514074,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "2fdb3ca65d0edfbffdfd61b523539a2fa4848f9577210053adb28788833e10dc",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514075,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "70ea1babfdd4380fad825150fc1f377b022839fec30e9940c0e6313f1767126b",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514076,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "6c2cd26141b4697502740bbc0108d1379e14ec0e6b96f4b4f352c50257184231",
+      "new_LLM_calls": 4,
+      "control_steps": 260
     },
     {
       "seed": 514077,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "666f7e66a5c096d018f88b83124a707da70faa8469d3b605dc1c0b918fbea30f",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514078,
@@ -643,43 +643,43 @@
     },
     {
       "seed": 514079,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "68a60ad3c970f3e641bf376702a98e8342ba4e259b94db7d8ac1e409c8b3299c",
+      "new_LLM_calls": 4,
+      "control_steps": 256
     },
     {
       "seed": 514080,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "a56df5e99e56da36a86aa176111bfe20aad7e177add419d222918fdd235c2bad",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514081,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "0b956e3c4743b76ce0957add1247dac8493b3a48ee4128af360a3c2d4faf2014",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514082,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "28f0edd1f7f7c37e901dad174764f212fa88612a746cc7be3426c2927596495e",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514083,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "0d6b4b2c1543e328781bf053791ae3359743036682644960b004f4a18d25b87b",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514084,
@@ -691,139 +691,139 @@
     },
     {
       "seed": 514085,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "d910ad4794b8d6d63c2627ff61f568ea2033154d011b89eeb804d50a844dcc72",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514086,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "ccbc2e48e4027706dabbc4611961b20456d50e96897375746f2abb4aa6e1627c",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514087,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "1037289d04234d110d1fa8545ceef849ba4f126d6f48b971ce61804548b7ee34",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514088,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "c0bdeb217d4650ff5e5f4bf780b47fe26819b425aa092c31aa42b091cbb3ccfd",
+      "new_LLM_calls": 4,
+      "control_steps": 322
     },
     {
       "seed": 514089,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "ed9c16300f53fccd815986d535640d688f895c3da5c65c3a24dc11400a0e9302",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514090,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "d253f832d20f31b3df6e7b5cce85cd67b6d94ad7f7125cb6b35bf478a8f28279",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514091,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "1524c7ff37d57d0d1563e4298013d78e95c5287b655109601931db3f89bfeb50",
+      "new_LLM_calls": 4,
+      "control_steps": 267
     },
     {
       "seed": 514092,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "11152bf352f6dbe627058097e87ccc7749c19bc466265bc8cf7c83c61804b8a3",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514093,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "39808ddc7e4329944b5686479157bef7ed2c6c12d5b88c2f5634a2cb92485e83",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514094,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "31d4c4b2b838557039172b4e4fbffa422e9443d24eb455897457cc5d6866df35",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514095,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "392b591c51e918f1776474f800eb718e5dc5ed6ff60d6c1d541d4d3f27f446ca",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514096,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "b422dc981206dd3ab4c08da120a7f1921e9b6f6d1a15459c7e96b2131103d471",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514097,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "1fda0d4afd7524aa2c514ceaab08613e86c384526049ba3176c152a6dfb693b3",
+      "new_LLM_calls": 4,
+      "control_steps": 285
     },
     {
       "seed": 514098,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "3bf97282ffead3f9f2951e4403a57f611e8a1afca7aba7d7cbe9f7ec502552fc",
+      "new_LLM_calls": 4,
+      "control_steps": 256
     },
     {
       "seed": 514099,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "e31e157a032f46ef4c58091f38058d14f2d049d5ba6b6c5920d0c95fb0f025fa",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514100,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "f249b005e7521feed0a074e89136c378b420a58f629b678dfbf00a499b88fac8",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514101,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "6065affa6ea6a3e462dd9051f5ccd8c7d5f14c8ce8ab1c2fefc7a6398773d41e",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514102,
@@ -835,11 +835,11 @@
     },
     {
       "seed": 514103,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "4dee416b9b097b436b64142d5771f675f78f8b47f67098ad9cbb2eeb6dbf28f6",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514104,
@@ -851,19 +851,19 @@
     },
     {
       "seed": 514105,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "bb4c5b116869df2b2f69a8f8f375d3486f1410781ec36806858c52d0f6669660",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514106,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "1ae0845daa31558d53c23ba9c157dcde9b51c6b3dea2df401bc6d4bb5547ca08",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514107,
@@ -875,59 +875,59 @@
     },
     {
       "seed": 514108,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "dedff3684e5714b442d780858f0845376609cdf39ec81974928c71cfdb5f099d",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514109,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "23d20dc6c5ee44648b67e0cd9f7befc4ac288a4de2c152d4fdc1e24fdb5fbc90",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514110,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "4fe05073aa558b81405dec71e1a4d9876af6a5ade9ded41a1a2c4d05103ce92e",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514111,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "a2fbb10502f15790a7067e4b6e0136cfecb737b8178693a3adafa5acccd1d792",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514112,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "6e864866aa370fb303ee985611cacdad70259919eeeb45c45b67f9c9f144605d",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514113,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "41d2174d141ac9d3d115d3ed2f29ff901b73bce9b0932e961871cc0c686caa27",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514114,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "9cbf8bde1585e2e197bca38d696fe5a4733391e7eb13163bc18b609a4ab9ce7d",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514115,
@@ -939,11 +939,11 @@
     },
     {
       "seed": 514116,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "fb3d7f9e74fea7c372bf6d9d79eae572d1c02d5c084b062f28c8057c8194facb",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514117,
@@ -955,11 +955,11 @@
     },
     {
       "seed": 514118,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "e0d78c4502325fa0927c7976b2c117a517fb63f937765f69697ff0a350f23ceb",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514119,
@@ -971,51 +971,51 @@
     },
     {
       "seed": 514120,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "9b7c3eaff45e638bebe0c45c8e2149c42774662b9f7f9ce4e03c9905c47027ac",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514121,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "c245a1465ec4878f0dbccf1f00ab049a2e9cd9a1426b9f2700a8fb4270d9363d",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514122,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "e0fcfcd38588eb4a516a00790c0cd17a9671867db8ae065c1444ea7d589a71bb",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514123,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "e8f479a957115d8a3b29f00464816c1c1d38bda1b21c66694eb744f12782345e",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514124,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "67333afd55ce87e008cff8d7d39879a64e983a966af1cff00bf5471f180159d3",
+      "new_LLM_calls": 4,
+      "control_steps": 322
     },
     {
       "seed": 514125,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "42f19ef4031f584d80d845e14b5dc61806e822ca38a99f0562febabab08f852f",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514126,
@@ -1035,91 +1035,91 @@
     },
     {
       "seed": 514128,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "94ab02daa22c19260cee449b1f056b66eefe8be51ec7c0719b2b99d29955eea4",
+      "new_LLM_calls": 4,
+      "control_steps": 259
     },
     {
       "seed": 514129,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "e2b830879d3ce1bc24690c7102e4b473353f8b053bef32903b86947631b08ed8",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514130,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "d8fac8b4d05e9e5bfb5f7499d5269e4e731e602affae04d2e0522cf78a7f0cab",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514131,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "9a30e775df83074306678a4390150df7b301277c0d1e2f4dcdb22cda8409e225",
+      "new_LLM_calls": 4,
+      "control_steps": 297
     },
     {
       "seed": 514132,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "cfb39af735c9dc3f03c678a4203bfc50972b00e1ac99ab15ab039e2663bf2dcf",
+      "new_LLM_calls": 4,
+      "control_steps": 262
     },
     {
       "seed": 514133,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "4e55a85b3c45500729490a32052fad8aed3a21e09a47952a544086c8144acb03",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514134,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "b5dad60f81cce08ff2d0d8f9ebdc7ad08c6b890e3b1b00b202d1ae2cb6b2f0b8",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514135,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "d9f07b108b7ab8f219832136b3c5caf05c0dc1a661d7988b796343cac199ca82",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514136,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "a52461e468be6add9a1c3e13fb0ffbd4e0071dc067bbbaca58f4c926f11c3440",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514137,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "25b4cc03429285fa3fd4a918b73a35254c71437df365cdba69de52a35b62b84c",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514138,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "b2838cb1a7e934da08f555e2104f9793c47447180033641258b4c3defb95aee5",
+      "new_LLM_calls": 4,
+      "control_steps": 296
     },
     {
       "seed": 514139,
@@ -1131,11 +1131,11 @@
     },
     {
       "seed": 514140,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "975da8707bf6b6a4faaf9ea486cf0101b895222a3eb9727be8b2d21ea6f0bd3e",
+      "new_LLM_calls": 4,
+      "control_steps": 301
     },
     {
       "seed": 514141,
@@ -1147,59 +1147,59 @@
     },
     {
       "seed": 514142,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "450907e2871169bf2bdcbe7032a03855a8d2f417efb6084212c55293cedf981e",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514143,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "e6b2b7ba35c652e7fd3fa58d4e7adcc936bed6596b6e074b4ab8ddf4c28d81bc",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514144,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "2a429a3db699e1dc86a7f5b26f775f51369194b9eb0d0d22f5d34a09d879dafe",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514145,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "7ea7de3469edf88476a633e32dd2ebfd25d14a682881c138173ea6f1a11a8f1b",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514146,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "5ecf71e453619e214682b16c10f09f79e7a7ff429fb566949fe2a3040c5f18a2",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514147,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "ec810d2fbea9f4474cb71699b41d9d81203d824d7210b9db26faa39a0fdf594e",
+      "new_LLM_calls": 4,
+      "control_steps": 294
     },
     {
       "seed": 514148,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "f336117888131809ca28294940bf7e103d189a58cbd080282e05c26852fd6f3a",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514149,
@@ -1211,55 +1211,55 @@
     },
     {
       "seed": 514150,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": true,
+      "sha256": "15bbe4a198442298584067e78964e314a3f124c08efddd43ec8bf8487d85e89d",
+      "new_LLM_calls": 4,
+      "control_steps": 261
     },
     {
       "seed": 514151,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "a9e7941557a7a4c83668301b215bd3ac52849cd85f0597d5ead43765d00104e3",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514152,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "1475b2184a8dc219d17fe1bf77ebc171b7ed522f2702e3b53fd2ca80aa54cb13",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514153,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "fe09fdc35a790c5e5078c6cecc89a67757476c4ae9ac4037668d527a0156ef9c",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514154,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "62370ad52d9c802b17a888018e025dfbeb9d6150863c89ebebedd96d30c5c3df",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514155,
-      "status": "pending",
-      "native_success": null,
-      "sha256": null,
-      "new_LLM_calls": null,
-      "control_steps": null
+      "status": "completed",
+      "native_success": false,
+      "sha256": "a10b263b16f7fdeb02e016a8d0136b5b427133d047e27a48f4543ee56b63e098",
+      "new_LLM_calls": 4,
+      "control_steps": 327
     },
     {
       "seed": 514156,
-      "status": "pending",
+      "status": "infrastructure_error",
       "native_success": null,
       "sha256": null,
       "new_LLM_calls": null,
