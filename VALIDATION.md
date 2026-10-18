@@ -6,7 +6,7 @@ Date: 18 October 2026.
 
 | Check | Result |
 |---|---|
-| Standard-library unit tests | 25 pass |
+| Standard-library unit tests | 31 pass |
 | Exported JSON and source-video hashes | 18 files pass |
 | Four recorded policy updates | Match within `1e-12` |
 | Original NumPy/SciPy residual versus port | 495 comparisons; maximum target error `2.22e-16` |
@@ -18,6 +18,7 @@ Date: 18 October 2026.
 | Browser runtime errors | None in the smoke test |
 | Mobile horizontal overflow | None at 390 px |
 | Follow-up display states | Synthetic completed, stopped, and falsely completed records pass; no partial score is displayed |
+| Capacity retry guard | Accepts the recorded capacity error only; rejects completed task failures, other transport errors, and changed artifacts |
 | Report styling | Uses cyks.in's color values, grid, and local font stacks; no downloaded fonts |
 | Dish follow-up baseline smoke | All 327 native steps match the archived development baseline exactly |
 | New model calls or simulator rollouts | The new action–observe follow-up executes both; see `DISH_LOOP.md` |

@@ -11,7 +11,30 @@ import time
 from run_dish_loop import audit_episode, digest, run, summarize, verify, write
 
 
-def recover_cases(plan, output, previous, now, auditor=audit_episode):
+def capacity_failure(path, case):
+    result = json.loads(path.read_text())
+    if (result["complete"] or result["native_success"] is not None
+            or result["seed"] != case["seed"] or result["reference_sha256"] != case["reference_sha256"]
+            or not result["initial_state_exact"] or result["parameter_updates"] != 0
+            or result.get("error") != "RuntimeError: Astra transport failed: 1; no retry"
+            or any(step["native_success"] or step["terminated_or_truncated"] for step in result["native_steps"])):
+        raise ValueError("Only an incomplete capacity-error episode can be retried")
+    for name, expected in result["artifacts"].items():
+        if digest(path.parent / name) != expected:
+            raise ValueError("Interrupted episode artifact changed")
+    directory = path.parent / f"call-{result['new_LLM_calls']:02d}"
+    wait = json.loads((directory / "wait.json").read_text())
+    events = [json.loads(line) for line in (directory / "events.jsonl").read_text().splitlines()]
+    message = "Selected model is at capacity. Please try a different model."
+    if (wait["returncode"] != 1 or wait["deadline_expired"]
+            or not any(event.get("type") == "turn.failed" and event.get("error", {}).get("message") == message for event in events)
+            or any(event.get("type") not in ("thread.started", "turn.started", "error", "turn.failed") for event in events)
+            or any(event.get("message") != message for event in events if event.get("type") == "error")):
+        raise ValueError("Transport error is not the approved capacity failure")
+    return result
+
+
+def recover_cases(plan, output, previous, now, auditor=audit_episode, allow_capacity_retries=False):
     summarize(previous["rows"], previous["phase"])
     if previous["phase"] == "complete":
         raise ValueError("A completed queue cannot resume")
@@ -30,6 +53,9 @@ def recover_cases(plan, output, previous, now, auditor=audit_episode):
         if row["status"] != "pending":
             if old != row or directory.exists():
                 raise ValueError("An inherited deadline or rejection was changed")
+            continue
+        if allow_capacity_retries and old["status"] == "infrastructure_error":
+            capacity_failure(result_path, row)
             continue
         if old["status"] not in ("pending", "completed"):
             raise ValueError("A failed assignment needs a separate investigation, not a retry")

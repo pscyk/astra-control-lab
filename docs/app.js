@@ -216,12 +216,17 @@ function dishLoopScore(followup) {
     const updated = new Date(followup.updated_unix * 1000).toLocaleString();
     element("dish-loop-status").textContent = `${completed}/${200 - inherited} native episodes audited; ${inherited} shared proposal outcomes retained. Snapshot: ${updated}. The score updates after the full run and audit.`;
   }
+  if (followup.capacity_recovery) {
+    const attempts = followup.capacity_recovery.failed_attempts;
+    if (!Array.isArray(attempts)) throw new Error("Invalid capacity-recovery record");
+    element("dish-loop-status").append(` Capacity recovery: ${attempts.length} interrupted attempt${attempts.length === 1 ? "" : "s"} retained. Retries add execution and model-call cost.`);
+  }
 }
 
 async function initialize() {
   try {
     const [gallery, study, teacher, feedback, followup] = await Promise.all(["cases", "study", "teacher", "feedback", "dish_loop"].map(async name => {
-      const response = await fetch(`data/${name}.json?v=3`);
+      const response = await fetch(`data/${name}.json?v=4`);
       if (!response.ok) throw new Error(`Cannot load ${name}`);
       return response.json();
     }));

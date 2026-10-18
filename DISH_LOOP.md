@@ -4,7 +4,7 @@ Registered on 18 October 2026. Status: preliminary, with results published only 
 
 The original dish comparison tested zero-shot Astra, random-search corrections, and an RL residual. This follow-up adds action–observe control without replacing any original result or retraining a policy.
 
-## Fixed protocol
+## Original protocol
 
 | Setting | Value |
 |---|---|
@@ -61,6 +61,23 @@ The continuation runs under the user service `astra-dish-loop-20261018.service`,
 ```bash
 systemctl --user status astra-dish-loop-20261018.service
 tail -f "$RUN/queue.log"
+```
+
+## Capacity recovery amendment
+
+On 19 October 2026, Astra returned “Selected model is at capacity” during scene 514156, after 128 native steps. The queue stopped with 133 completed episodes and 24 successes. The user then authorized retries and continuation.
+
+`scripts/retry_dish_loop.py` adds at most three retries per scene for this exact capacity error, with waits of 60, 180, and 300 seconds. It does not change the registered executor, model, prompt, action limits, scene schedule, or initial proposals. It accepts the first completed attempt, whether successful or unsuccessful. Completed task failures, other transport errors, and shared initial proposal deadlines are not retried.
+
+Before retrying, the supervisor verifies and archives the interrupted attempt, its video, call records, and queue status. It audits the completed episodes without executing them again. The original queue deadline and disk reserve still apply. Each retry starts from the same scene reset; it is not a continuation from the interrupted simulator state.
+
+This amendment changes the original no-retry protocol. The recovered result uses the same 200-scene denominator, but retries add native steps and model calls beyond the first attempt's budget. `capacity_recovery` in the public result records the interrupted attempts, hashes, call counts, native steps, and time costs. It also reports successes excluding retried scenes. A capacity-recovered score must not be presented as an unchanged, strict no-retry comparison.
+
+```bash
+"$PYTHON" scripts/retry_dish_loop.py --harness "$HARNESS" --output "$RUN" \
+  --registration "$REGISTRATION" --publish-on-finish
+systemctl --user status astra-dish-loop-capacity-20261019.service
+tail -f "$RUN/capacity-queue.log"
 ```
 
 ## Interpretation

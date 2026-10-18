@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "status": "preliminary",
-  "phase": "stopped",
+  "phase": "running",
   "task": "PlaceDishInRack-v1",
-  "updated_unix": 1792357410.4700286,
-  "started_unix": 1792347527.27801,
+  "updated_unix": 1792361123.1469631,
+  "started_unix": 1792361122.1111596,
   "protocol_sha256": "40e7e153c08b1573ed06dbefa0b97cd8902bfd8b8bd7e6f50cbc98f0926b0508",
   "review_interval_steps": 64,
   "maximum_feedback_calls": 4,
@@ -1259,7 +1259,7 @@
     },
     {
       "seed": 514156,
-      "status": "infrastructure_error",
+      "status": "pending",
       "native_success": null,
       "sha256": null,
       "new_LLM_calls": null,
@@ -1618,5 +1618,33 @@
       "control_steps": null
     }
   ],
-  "limits": "Post-hoc follow-up on the same 200 scenes, not an untouched test. Shared initial model deadlines remain unknown physical outcomes. More calls within the remaining 720-second model wait budget; backend checkpoint identity across dates is not attested."
+  "limits": "Post-hoc follow-up on the same 200 scenes, not an untouched test. Shared initial model deadlines remain unknown physical outcomes. More calls within the remaining 720-second model wait budget; backend checkpoint identity across dates is not attested. User-authorized capacity-only episode retries add attempts and cost; this is not the original no-retry comparison. Interrupted attempts are retained in capacity_recovery.",
+  "capacity_recovery": {
+    "amendment": "user_authorized_capacity_only_retries_2026_10_19",
+    "authorized_unix": 1792361051.6016858,
+    "maximum_retries_per_scene": 3,
+    "backoff_seconds": [
+      60,
+      180,
+      300
+    ],
+    "failed_attempts": [
+      {
+        "seed": 514156,
+        "attempt": 1,
+        "sha256": "349825da423e8e254e84d5a0fcdeb0ab51855e11548e87aef6affce5874419a1",
+        "native_success": null,
+        "reason": "model_capacity",
+        "control_steps": 128,
+        "new_LLM_calls": 2,
+        "feedback_wait_seconds": 73.22755026817322,
+        "attempt_wall_seconds": 81.66787767410278,
+        "original_status_sha256": "71cc30c3489c868a510668abc9b40f369ac410ed50367f8cac506ceac8b4acbe"
+      }
+    ],
+    "interrupted_scenes": 1,
+    "successes_without_retried_scenes": 24,
+    "attempt_limits_unchanged": true,
+    "extra_attempt_cost_excluded_from_original_attempt_budget": true
+  }
 }

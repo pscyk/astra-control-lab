@@ -13,7 +13,8 @@ def check_dish_score_states(browser, url, checks):
         if incomplete:
             outcomes[-1].update(status="pending", native_success=None)
         fixture = {"schema_version": 1, "task": "PlaceDishInRack-v1", "phase": phase,
-                   "updated_unix": 1792347527, "outcomes": outcomes}
+                   "updated_unix": 1792347527, "outcomes": outcomes,
+                   "capacity_recovery": {"failed_attempts": [{"seed": 514156}]}}
         page.route("**/data/dish_loop.json*", lambda route: route.fulfill(json=fixture))
         page.goto(url)
         if phase == "complete" and incomplete:
@@ -23,6 +24,7 @@ def check_dish_score_states(browser, url, checks):
             page.wait_for_function("document.querySelectorAll('.case-buttons button').length === 5")
             assert page.locator("#dish-loop-score").inner_text() == ("Run stopped" if incomplete else "10.5%")
             assert page.locator("#dish-loop-result .score-fill").count() == (0 if incomplete else 1)
+            assert "1 interrupted attempt retained" in page.locator("#dish-loop-status").inner_text()
             if not incomplete:
                 assert "21/200 planned scenes" in page.locator("#dish-loop-status").inner_text()
                 assert "95% CI 7.0–15.5%" in page.locator("#dish-loop-status").inner_text()
